@@ -1,5 +1,5 @@
 <?php
 
-echo "Testando branch ";
+echo "Testando branch";
 
 ?>
