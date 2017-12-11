@@ -80,7 +80,7 @@ echo "
     Tempo decorrido: ".(strtotime($end)-strtotime($start))."s
 ";
 
-
+ 
 function getPageSubscription($page_id, $page_token){
   global $app_id;
   $f = "https://graph.facebook.com/$page_id/subscribed_apps?access_token=$page_token";
