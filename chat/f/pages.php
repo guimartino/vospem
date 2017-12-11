@@ -49,8 +49,10 @@ try {
     $f = "https://graph.facebook.com/$fid/subscribed_apps?access_token=$accessTokenPagina";
     $s = file_get_contents($f);
     echo "<br>Subscribed apps:";
-    $subscribed = json_decode(json_decode(json_encode($s), true));
-    print_r($subscribed->data['0']); 
+    $subscribed = json_decode(json_decode(json_encode($s), true))->data['0'];
+    if($subscribed->id == "1264011017036295"){
+      echo "INSCRITO NO APLICATIVO!";
+    }
     // foreach($subscribed as $s1 => $k1){
     //   print_r($s1);
     //   echo ": ";
