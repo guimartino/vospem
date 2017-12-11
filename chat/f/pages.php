@@ -11,7 +11,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once "../fb/vendor/autoload.php"; // change path as needed
 
-  $app_id = "1264011017036295";
+global  $app_id = "1264011017036295";
 
 
 $fb = new \Facebook\Facebook([
