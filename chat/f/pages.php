@@ -3,7 +3,7 @@ $start = date('Y-m-d H:i:s');
 if(!session_id()) {
     session_start();
 }
-if(!isset($_SESSION['fb_access_token'])){
+if(!(isset($_SESSION['fb_access_token']))) {
   header('Location login.php');
 }
 ini_set('display_errors', 1);
