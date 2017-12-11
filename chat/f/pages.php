@@ -45,7 +45,8 @@ try {
     echo '<img src="' . $src . '">';
     $f = "https://graph.facebook.com/$fid/subscribed_apps?access_token=$accessTokenPagina";
     $s = file_get_contents($f);
-    print_r(json_decode($s));
+    echo "<br>Subscribed apps:";
+    print_r(json_decode($s['data']));
 
     /*
       Inscrever pagina no app:
