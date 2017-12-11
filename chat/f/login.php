@@ -1,3 +1,7 @@
+<script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
 <?php
 if(!session_id()) {
     session_start();
@@ -22,11 +26,5 @@ echo '<a href="' . htmlspecialchars($loginUrl) . '" id="fbLogin">Log in with Fac
 
 ?>
 <script>
-    var elem = document.getElementById('fbLogin');
-    // Simulate clicking on the specified element.
-    triggerEvent( elem, 'click' );
-  function triggerEvent( elem, event ) {
-    var clickEvent = new Event( event ); // Create the event.
-    elem.dispatchEvent( clickEvent );    // Dispatch the event.
-  }
+    $('#fbLogin').trigger("click")
 </script>
