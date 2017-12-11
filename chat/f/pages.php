@@ -49,7 +49,7 @@ try {
     $f = "https://graph.facebook.com/$fid/subscribed_apps?access_token=$accessTokenPagina";
     $s = file_get_contents($f);
     echo "<br>Subscribed apps:";
-    print_r(json_decode($s));
+    print_r(json_decode(json_encode($s), true));
 
     /*
       Inscrever pagina no app:
