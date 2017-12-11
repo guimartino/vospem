@@ -46,20 +46,22 @@ try {
     $f = "https://graph.facebook.com/$fid/subscribed_apps?access_token=$accessTokenPagina";
     $s = file_get_contents($f);
     $subscribed = json_decode(json_decode(json_encode($s), true));
-    $t = "remove";
+    $t = "add"; $t_1 = "INSCREVER PAGINA";
     if(isset($subscribed->data['0'])) {
       $subscribed = $subscribed->data['0'];
       if($subscribed->id == "1264011017036295"){
-        echo "INSCRITO NO APLICATIVO!";
-          $t = "add";
+        //echo "INSCRITO NO APLICATIVO!";
+        $t = "remove";
+        $t_1 = "DESINSCREVER PAGINA";
       }
     }
     ?>
+    <br>
       <form method="POST" action="subscribe.php">
-        <input type="hidden" name="$t" value="add">
+        <input type="hidden" name="<?=$t?>" value="add">
         <input type="hidden" name="page_id" value="<?=$fid?>">
         <input type="hidden" name="page_token" value="<?=$accessTokenPagina?>">
-        <input type="submit" value="Inscrever pagina" style="padding:10px 20px 10px 20px">
+        <input type="submit" value="<?=$t_1?>" style="padding:10px 20px 10px 20px">
       </form>
     <?php
       /*
