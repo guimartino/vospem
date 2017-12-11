@@ -80,14 +80,15 @@ echo "
     Tempo decorrido: ".(strtotime($end)-strtotime($start))."s
 ";
 
- 
+
 function getPageSubscription($page_id, $page_token){
   global $app_id;
   $f = "https://graph.facebook.com/$page_id/subscribed_apps?access_token=$page_token";
   $s = file_get_contents($f);
   $subscribed = json_decode(json_decode(json_encode($s), true));
   $r = array();
-  $r[0] = "add"; $t[1] = "INSCREVER PAGINA";
+  $r[0] = "add";
+  $r[1] = "INSCREVER PAGINA";
   if(isset($subscribed->data['0'])) {
     $subscribed = $subscribed->data['0'];
     if($subscribed->id == $app_id){
