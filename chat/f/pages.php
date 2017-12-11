@@ -42,25 +42,15 @@ try {
     /*
       Checa se pagina está inscrita no app
     */
-    $f = "https://graph.facebook.com/$fid/subscribed_apps?access_token=$accessTokenPagina";
-    $s = file_get_contents($f);
-    $subscribed = json_decode(json_decode(json_encode($s), true));
-    $t = "add"; $t_1 = "INSCREVER PAGINA";
-    if(isset($subscribed->data['0'])) {
-      $subscribed = $subscribed->data['0'];
-      if($subscribed->id == $app_id){
-        $t = "remove";
-        $t_1 = "DESINSCREVER PAGINA";
-      }
-    }
+    $s = getPageSubscription($page_id, $page_token)
     ?>
     <br>
-      <form method="POST" action="subscribe.php">
-        <input type="hidden" name="tipo" value="<?=$t?>">
-        <input type="hidden" name="page_id" value="<?=$fid?>">
-        <input type="hidden" name="page_token" value="<?=$accessTokenPagina?>">
-        <input type="submit" value="<?=$t_1?>" style="padding:10px 20px 10px 20px">
-      </form>
+    <form method="POST" action="subscribe.php">
+      <input type="hidden" name="tipo" value="<?=$s[0]?>">
+      <input type="hidden" name="page_id" value="<?=$page_id?>">
+      <input type="hidden" name="page_token" value="<?=$page_token?>">
+      <input type="submit" value="<?=$s[1]?>" style="padding:10px 20px 10px 20px">
+    </form>
     <?php
     /*
       Exibe imagem da página (mesmo se estiver oculta)
@@ -90,6 +80,22 @@ echo "
     Tempo decorrido: ".(strtotime($end)-strtotime($start))."s
 ";
 
+
+function getPageSubscription($page_id, $page_token){
+  $f = "https://graph.facebook.com/$page_id/subscribed_apps?access_token=$page_token";
+  $s = file_get_contents($f);
+  $subscribed = json_decode(json_decode(json_encode($s), true));
+  $r = array();
+  $r[0] = "add"; $t[1] = "INSCREVER PAGINA";
+  if(isset($subscribed->data['0'])) {
+    $subscribed = $subscribed->data['0'];
+    if($subscribed->id == $app_id){
+      $r[0] = "remove";
+      $r[1] = "DESINSCREVER PAGINA";
+    }
+  }
+  return $r;
+}
 
 function getPageImage($page_id, $fb_token){
   $image = "https://graph.facebook.com/$page_id/picture?type=large&access_token=".$fb_token;
