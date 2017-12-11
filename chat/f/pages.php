@@ -46,13 +46,22 @@ try {
     $f = "https://graph.facebook.com/$fid/subscribed_apps?access_token=$accessTokenPagina";
     $s = file_get_contents($f);
     $subscribed = json_decode(json_decode(json_encode($s), true));
+    $t = "remove";
     if(isset($subscribed->data['0'])) {
       $subscribed = $subscribed->data['0'];
       if($subscribed->id == "1264011017036295"){
         echo "INSCRITO NO APLICATIVO!";
+          $t = "add";
       }
-
     }
+    ?>
+      <form method="POST" action="subscribe.php">
+        <input type="hidden" name="$t" value="add">
+        <input type="hidden" name="page_id" value="<?=$fid?>">
+        <input type="hidden" name="page_token" value="<?=$accessTokenPagina?>">
+        <input type="submit" value="Inscrever pagina" style="padding:10px 20px 10px 20px">
+      </form>
+    <?php
       /*
         Exibe imagem da página (mesmo se estiver oculta)
       */
@@ -63,13 +72,6 @@ try {
       // Echo out a sample image
       echo '<img src="' . $src . '">';
 
-      ?>
-        <form method="POST" action="subscribe.php">
-          <input type="hidden" name="page_id" value="<?=$fid?>">
-          <input type="hidden" name="page_token" value="<?=$accessTokenPagina?>">
-          <input type="submit" value="Inscrever pagina" style="padding:10px 20px 10px 20px">
-        </form>
-      <?php
 
     /*
       Inscrever pagina no app:
