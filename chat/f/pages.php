@@ -58,7 +58,7 @@ try {
     ?>
     <br>
       <form method="POST" action="subscribe.php">
-        <input type="hidden" name="<?=$t?>" value="add">
+        <input type="hidden" name="tipo" value="<?=$t?>">
         <input type="hidden" name="page_id" value="<?=$fid?>">
         <input type="hidden" name="page_token" value="<?=$accessTokenPagina?>">
         <input type="submit" value="<?=$t_1?>" style="padding:10px 20px 10px 20px">
