@@ -39,18 +39,12 @@ try {
     echo "<br><br>";
     $fid = $value['id'];
 
+    /*
+      Checa se pagina está inscrita no app
+    */
 
-    $image = "https://graph.facebook.com/$fid/picture?type=large&access_token=".$_SESSION['fb_access_token'];
-    $imageData = base64_encode(file_get_contents($image));
-    // Format the image SRC:  data:{mime};base64,{data};
-    $src = 'data:;base64,'.$imageData;
-    // Echo out a sample image
-    echo '<img src="' . $src . '">';
     $f = "https://graph.facebook.com/$fid/subscribed_apps?access_token=$accessTokenPagina";
-
     $s = file_get_contents($f);
-    //echo "<br>Subscribed apps:";
-
     $subscribed = json_decode(json_decode(json_encode($s), true));
     if(isset($subscribed->data['0'])) {
       $subscribed = $subscribed->data['0'];
@@ -58,14 +52,24 @@ try {
         echo "INSCRITO NO APLICATIVO!";
       }
 
-
     }
-    // foreach($subscribed as $s1 => $k1){
-    //   print_r($s1);
-    //   echo ": ";
-    //   print_r($k1);
-    //   echo "<br>";
-    // }
+      /*
+        Exibe imagem da página (mesmo se estiver oculta)
+      */
+      $image = "https://graph.facebook.com/$fid/picture?type=large&access_token=".$_SESSION['fb_access_token'];
+      $imageData = base64_encode(file_get_contents($image));
+      // Format the image SRC:  data:{mime};base64,{data};
+      $src = 'data:;base64,'.$imageData;
+      // Echo out a sample image
+      echo '<img src="' . $src . '">';
+
+      ?>
+        <form method="POST" action="subscribe.php">
+          <input type="hidden" name="page_id" value="<?=$fid?>">
+          <input type="hidden" name="page_token" value="<?=$accessTokenPagina?>">
+          <input type="submit" value="Inscrever pagina" style="padding:10px 20px 10px 20px">
+        </form>
+      <?php
 
     /*
       Inscrever pagina no app:
