@@ -53,7 +53,7 @@ try {
     print_r($subscribed);
     foreach($subscribed as $s1 => $k1){
       print_r($s1);
-      echo ": "
+      echo ": ";
       print_r($k1);
       echo "<br>";
     }
