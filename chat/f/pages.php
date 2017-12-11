@@ -54,7 +54,7 @@ try {
     // foreach($subscribed as $s1 => $k1){
     //   print_r($s1);
     //   echo ": ";
-    //   print_r($k1);
+    //   print_r($k1); 
     //   echo "<br>";
     // }
 
