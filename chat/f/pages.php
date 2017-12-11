@@ -4,7 +4,7 @@ if(!session_id()) {
     session_start();
 }
 if(!(isset($_SESSION['fb_access_token']))) {
-  header('Location login.php');
+  header('Location: login.php');
 }
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
