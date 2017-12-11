@@ -49,7 +49,7 @@ try {
     $f = "https://graph.facebook.com/$fid/subscribed_apps?access_token=$accessTokenPagina";
     $s = file_get_contents($f);
     echo "<br>Subscribed apps:";
-    $subscribed = json_decode(json_encode($s), true);
+    $subscribed = json_decode(json_decode(json_encode($s), true));
     print_r($subscribed);
 
     /*
