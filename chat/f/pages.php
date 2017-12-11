@@ -11,46 +11,44 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once "../fb/vendor/autoload.php"; // change path as needed
 
+  $app_id = "1264011017036295";
+
+
 $fb = new \Facebook\Facebook([
-  'app_id' => '1264011017036295',
+  'app_id' => $app_id,
   'app_secret' => 'c1642f39152539b59460933e65c5f0d0',
   'default_graph_version' => 'v2.11',
   //'default_access_token' => '{access-token}', // optional
 ]);
-/* PHP SDK v5.0.0 */
-/* make the API call */
 try {
-  // Returns a `Facebook\FacebookResponse` object
   $response = $fb->get(
     '/me/accounts',
     ''.$_SESSION['fb_access_token']
   );
-  echo $_SESSION['fb_access_token']."<br>";
-  // print_r($response);
+  //echo $_SESSION['fb_access_token']."<br>";
   $graphEdge = $response->getGraphEdge();
   $array = $graphEdge->asArray();
   // print_r($array);
   //print_r($array);
   foreach($array as $key => $value){
     $accessTokenPagina = $value["access_token"];
-    echo 'Nome da pagina: ' . $value['name'] . '<br>';
-    echo 'ID: ' . $value['id'] . '<br>';
-    echo 'Acces Token: ' . $accessTokenPagina;
-    echo "<br><br>";
+    $page_name = $value['name'];
+    $page_id = $value['id'];
+    echo 'Nome da pagina: ' . $page_name . '<br>';
+    //echo 'ID: ' . $value['id'] . '<br>';
+    //echo 'Acces Token: ' . $accessTokenPagina;
+    //echo "<br><br>";
     $fid = $value['id'];
-
     /*
       Checa se pagina está inscrita no app
     */
-
     $f = "https://graph.facebook.com/$fid/subscribed_apps?access_token=$accessTokenPagina";
     $s = file_get_contents($f);
     $subscribed = json_decode(json_decode(json_encode($s), true));
     $t = "add"; $t_1 = "INSCREVER PAGINA";
     if(isset($subscribed->data['0'])) {
       $subscribed = $subscribed->data['0'];
-      if($subscribed->id == "1264011017036295"){
-        //echo "INSCRITO NO APLICATIVO!";
+      if($subscribed->id == $app_id){
         $t = "remove";
         $t_1 = "DESINSCREVER PAGINA";
       }
@@ -64,24 +62,13 @@ try {
         <input type="submit" value="<?=$t_1?>" style="padding:10px 20px 10px 20px">
       </form>
     <?php
-      /*
-        Exibe imagem da página (mesmo se estiver oculta)
-      */
-      $image = "https://graph.facebook.com/$fid/picture?type=large&access_token=".$_SESSION['fb_access_token'];
-      $imageData = base64_encode(file_get_contents($image));
-      // Format the image SRC:  data:{mime};base64,{data};
-      $src = 'data:;base64,'.$imageData;
-      // Echo out a sample image
-      echo '<img src="' . $src . '">';
-
-
     /*
-      Inscrever pagina no app:
-          https://graph.facebook.com/530951440254946/subscribed_apps?access_token=EAAR9nHZBpogcBAMghZBAQ2sIqVGYJITZCSUvaXb7RCwawDhQZBnLyiKUNS1C9IP6TE6PbWMbS0PJ831EdW89bAbW7yjVUq1bs9lngfFkga60PzJCr04Nm4qEeqR6ZAlLb1WpohevhnceZATuIKdUIZBJ7ZAJZCX9ZBtFZAvq6EZAW1wKgtCBYMZCopzNw
-
-            Tutorial:
-              https://developers.facebook.com/docs/marketing-api/guides/lead-ads/quickstart/webhooks-integration
+      Exibe imagem da página (mesmo se estiver oculta)
     */
+    $imagem = getPageImage($page_id, $_SESSION['fb_access_token']);
+    echo '<img src="' . $imagem . '">';
+
+
     echo "<br><br>";
     echo "<br><br>";
   }
@@ -94,23 +81,21 @@ try {
   exit;
 }
 
-// var_dump($response);
-// $graphNode = $response->getGraphNode();
-// Or if you have the latest dev version of the official SDK
 
-/* handle the result */
 $end = date('Y-m-d H:i:s');
 
 echo "
     Inicio: $start <br>
     Fim: $end <br>
-    Tempo decorrido: ".(strtotime($end)-strtotime($start))."
-
+    Tempo decorrido: ".(strtotime($end)-strtotime($start))."s
 ";
-function accessProtected($obj, $prop) {
-  $reflection = new ReflectionClass($obj);
-  $property = $reflection->getProperty($prop);
-  $property->setAccessible(true);
-  return $property->getValue($obj);
+
+
+function getPageImage($page_id, $fb_token = $_SESSION['fb_access_token']){
+  $image = "https://graph.facebook.com/$page_id/picture?type=large&access_token=".$fb_token;
+  $imageData = base64_encode(file_get_contents($image));
+  $src = 'data:;base64,'.$imageData;
 }
+
+
 ?>
