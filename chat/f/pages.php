@@ -51,6 +51,9 @@ try {
     echo "<br>Subscribed apps:";
     $subscribed = json_decode(json_decode(json_encode($s), true));
     print_r($subscribed);
+    foreach($subscribed as $s1 => $k1){
+      echo $s1 . ": " . $k1 . "<br>";
+    }
 
     /*
       Inscrever pagina no app:
