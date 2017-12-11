@@ -52,7 +52,7 @@ try {
     //echo "<br>Subscribed apps:";
 
     $subscribed = json_decode(json_decode(json_encode($s), true));
-    if(isset($subscribed->->data['0'])){
+    if(isset($subscribed->data['0'])) {
       if($subscribed->id == "1264011017036295"){
         echo "INSCRITO NO APLICATIVO!";
       }
