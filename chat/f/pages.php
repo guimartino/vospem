@@ -91,10 +91,11 @@ echo "
 ";
 
 
-function getPageImage($page_id, $fb_token = $_SESSION['fb_access_token']){
+function getPageImage($page_id, $fb_token){
   $image = "https://graph.facebook.com/$page_id/picture?type=large&access_token=".$fb_token;
   $imageData = base64_encode(file_get_contents($image));
   $src = 'data:;base64,'.$imageData;
+  return $src;
 }
 
 
