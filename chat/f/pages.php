@@ -50,11 +50,11 @@ try {
     $s = file_get_contents($f);
     echo "<br>Subscribed apps:";
     $subscribed = json_decode(json_decode(json_encode($s), true));
-    print_r($subscribed->data->0);
+    print_r($subscribed->data['0']);
     // foreach($subscribed as $s1 => $k1){
     //   print_r($s1);
     //   echo ": ";
-    //   print_r($k1); 
+    //   print_r($k1);
     //   echo "<br>";
     // }
 
