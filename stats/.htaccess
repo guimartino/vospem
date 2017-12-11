@@ -1,0 +1,7 @@
+AuthName "vospem.com statistics"
+AuthType Basic
+AuthUserFile /home/vospem/.stats-htpasswd
+require valid-user
+<Files .stats-htpasswd>
+deny from all
+</Files>
