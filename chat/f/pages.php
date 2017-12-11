@@ -29,9 +29,10 @@ try {
   // print_r($array);
   //print_r($array);
   foreach($array as $key => $value){
+    $accessTokenPagina = $value["access_token"];
     echo 'Nome da pagina: ' . $value['name'] . '<br>';
     echo 'ID: ' . $value['id'] . '<br>';
-    echo 'Acces Token: ' . $value["access_token"];
+    echo 'Acces Token: ' . $accessTokenPagina;
     echo "<br><br>";
     $fid = $value['id'];
 
@@ -42,6 +43,10 @@ try {
     $src = 'data:;base64,'.$imageData;
     // Echo out a sample image
     echo '<img src="' . $src . '">';
+    $f = "https://graph.facebook.com/$fid/subscribed_apps?access_token=$accessTokenPagina";
+    $s = file_get_contents($f);
+    print_r(json_decode($s));
+
     /*
       Inscrever pagina no app:
           https://graph.facebook.com/530951440254946/subscribed_apps?access_token=EAAR9nHZBpogcBAMghZBAQ2sIqVGYJITZCSUvaXb7RCwawDhQZBnLyiKUNS1C9IP6TE6PbWMbS0PJ831EdW89bAbW7yjVUq1bs9lngfFkga60PzJCr04Nm4qEeqR6ZAlLb1WpohevhnceZATuIKdUIZBJ7ZAJZCX9ZBtFZAvq6EZAW1wKgtCBYMZCopzNw
