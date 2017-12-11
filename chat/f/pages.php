@@ -11,7 +11,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once "../fb/vendor/autoload.php"; // change path as needed
 
-global  $app_id = "1264011017036295";
+$app_id = "1264011017036295";
 
 
 $fb = new \Facebook\Facebook([
@@ -82,6 +82,7 @@ echo "
 
 
 function getPageSubscription($page_id, $page_token){
+  global $app_id;
   $f = "https://graph.facebook.com/$page_id/subscribed_apps?access_token=$page_token";
   $s = file_get_contents($f);
   $subscribed = json_decode(json_decode(json_encode($s), true));
