@@ -2,4 +2,4 @@
 
 
 echo "teste";
-?>te
+?>
