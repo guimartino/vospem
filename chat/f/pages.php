@@ -31,7 +31,7 @@ try {
   // print_r($array);
   //print_r($array);
   foreach($array as $key => $value){
-    $accessTokenPagina = $value["access_token"];
+    $page_token = $value["access_token"];
     $page_name = $value['name'];
     $page_id = $value['id'];
     echo 'Nome da pagina: ' . $page_name . '<br>';
