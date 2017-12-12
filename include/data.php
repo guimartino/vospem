@@ -2,7 +2,7 @@
   if(!session_id()) {
       session_start();
   }
-  require_once  "../fb/vendor/autoload.php"; // change path as needed
+  requireFacebookSDK();
 ?>
 <script
 			  src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -18,5 +18,20 @@
     'default_graph_version' => 'v2.11',
     //'default_access_token' => '{access-token}', // optional
   ]);
+
+
+
+
+  function requireFacebookSDK(){
+    if (file_exists("fb/vendor/autoload.php")) {
+      require_once  "fb/vendor/autoload.php";
+    }elseif(file_exists("../fb/vendor/autoload.php")) {
+      require_once  "../fb/vendor/autoload.php";
+    }elseif(file_exists("../../fb/vendor/autoload.php")) {
+      require_once  "../../fb/vendor/autoload.php";
+    }elseif(file_exists("../../../fb/vendor/autoload.php")) {
+      require_once  "../../../fb/vendor/autoload.php";
+    }
+  }
 
 ?>
