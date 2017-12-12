@@ -15,7 +15,7 @@
   //$r = $r[0];
   ///echo "<br>Lado: ".$r."<br>";
   $r = (string) $r;
-  $r = json_decode($r, true);
+  $r = jsonDecode($r, true);
   switch (json_last_error()) {
         case JSON_ERROR_NONE:
             echo ' - No errors';

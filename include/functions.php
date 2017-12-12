@@ -91,7 +91,15 @@
       return $response;
   }
 
-
+  function jsonDecode($string, $assoc=true, $fixNames=true){
+    if(strpos($string, '(') === 0){
+      $string = substr($string, 1, strlen($string) - 2); // remove outer ( and )
+    }
+    if($fixNames){
+      $string = preg_replace("/(?<!\"|'|\w)([a-zA-Z0-9_]+?)(?!\"|'|\w)\s?:/", "\"$1\":", $string);
+    }
+    return json_decode($string, $assoc);
+  }
 
   function fixJSON($string, $character = "}", $side='left', $keep_character=true) {
     echo "<br>FUNCAO";
