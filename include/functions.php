@@ -89,6 +89,9 @@
 
 
   function fixJSON($string, $character = "}", $side='left', $keep_character=true) {
+    echo "FUNCAO<br>";
+    echo "$side<br>";
+    echo "FUNCAO<br>";
     $offset = ($keep_character ? 1 : 0);
     $whole_length = strlen($string);
     $right_length = (strlen(strrchr($string, $character)) - 1);
