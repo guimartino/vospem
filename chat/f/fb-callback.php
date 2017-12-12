@@ -79,4 +79,4 @@ $_SESSION['fb_access_token'] = (string) $accessToken;
 
 // User is logged in with a long-lived access token.
 // You can redirect them to a members-only page.
-header('Location: https://vospemtest1.herokuapp.com/chat/f/pages.php');
+header('Location: '.$domain.'/chat/f/pages.php');
