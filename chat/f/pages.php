@@ -40,6 +40,7 @@ try {
     //echo "<br><br>";
     $fid = $value['id'];
     /*
+      
       Checa se pagina está inscrita no app
     */
     $s = getPageSubscription($page_id, $page_token)
