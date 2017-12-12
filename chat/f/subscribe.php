@@ -6,7 +6,7 @@
   $token = $_POST['page_token'];
   $t = $_POST['tipo'];
   if($t == "remove"){
-    $r = httpDelete("https://graph.facebook.com/$id/subscribed_apps?access_token=$token");
+    $r = curl_del("https://graph.facebook.com/$id/subscribed_apps?access_token=$token");
   }else{
     $r = httpPost("https://graph.facebook.com/$id/subscribed_apps?access_token=$token");
   }

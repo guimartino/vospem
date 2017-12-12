@@ -101,6 +101,20 @@
     return json_decode($string, $assoc);
   }
 
+  function curl_del($path, $json = '')
+  {
+      $url = $path;
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, $url);
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      $result = curl_exec($ch);
+      $result = json_decode($result);
+      curl_close($ch);
+
+      return $result;
+  }
   function fixJSON($string, $character = "}", $side='left', $keep_character=true) {
     echo "<br>FUNCAO";
     echo "<br>$side";
