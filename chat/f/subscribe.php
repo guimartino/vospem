@@ -12,20 +12,12 @@
   }
   echo "<br>$r<br>";
   $r = json_decode($r, true);
-  print_r($r);
+  print_r(json_decode(json_encode($r), true));
   //echo $t;
   // salvar no banco ID da pagina e Token
 
 
   //header('Location: pages.php');
-
-
-
-
-
-
-  {"success":true}
-  {"success":true}
 
 
 
