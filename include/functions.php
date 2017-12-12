@@ -69,40 +69,12 @@
       curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       $response = curl_exec($curl);
+      $response = json_decode($response);
       curl_close($curl);
       return $response;
   }
 
-  function httpDelete($url)
-  {
-      /*$url = $path;
-      $ch = curl_init();
-      curl_setopt($ch, CURLOPT_URL, $url);
-      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-      $result = curl_exec($ch);
-      //$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-      curl_close($ch);
-      return $result;*/
-      $curl = curl_init($url);
-      curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
-      $response = curl_exec($curl);
-      curl_close($curl);
-      $response = substr($response, 0, strlen($response) - 1);
-      return $response;
-  }
-
-  function jsonDecode($string, $assoc=true, $fixNames=true){
-    if(strpos($string, '(') === 0){
-      $string = substr($string, 1, strlen($string) - 2); // remove outer ( and )
-    }
-    if($fixNames){
-      $string = preg_replace("/(?<!\"|'|\w)([a-zA-Z0-9_]+?)(?!\"|'|\w)\s?:/", "\"$1\":", $string);
-    }
-    return json_decode($string, $assoc);
-  }
-
-  function curl_del($path, $json = '')
-  {
+  function curl_del($path, $json = ''){
       $url = $path;
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL, $url);
