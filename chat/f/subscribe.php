@@ -14,8 +14,12 @@
   //$r = fixJSON($r, "}", 'right', false);
   //$r = $r[0];
   ///echo "<br>Lado: ".$r."<br>";
-  
-  print_r($r);
+
+  if($r->success == 1){
+    echo "Sucesso";
+  }else{
+    echo "Ocorreu um erro!";
+  }
   //echo $t;
   // salvar no banco ID da pagina e Token
 
