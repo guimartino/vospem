@@ -16,7 +16,7 @@
   ///echo "<br>Lado: ".$r."<br>";
   $r = json_decode($r, true);
   //$r = strlen($r);
-  //$r .= "aaa";
+  $r = "aaaa".$r."aaa";
   print_r($r);
   //echo $t;
   // salvar no banco ID da pagina e Token
