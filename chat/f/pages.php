@@ -1,10 +1,7 @@
 <?php
 include("../../include/data.php");
 $start = date('Y-m-d H:i:s');
-
-if(!(isset($_SESSION['fb_access_token']))) {
-  header('Location: login.php');
-}
+checkLogin();
 
 try {
   $response = $fb->get(
@@ -32,7 +29,7 @@ try {
     $s = getPageSubscription($page_id, $page_token);
     echo '<img src="' . getPageImage($page_id, $_SESSION['fb_access_token']). '">';
     ?>
-    <br>
+    <br><br>
     <form method="POST" action="subscribe.php">
       <input type="hidden" name="tipo" value="<?=$s[0]?>">
       <input type="hidden" name="page_id" value="<?=$page_id?>">

@@ -1,6 +1,11 @@
 <?php
 
-
+  function checkLogin(){
+    if(!(isset($_SESSION['fb_access_token']))) {
+      header('Location: login.php');
+    }
+  }
+  
   function requireFacebookSDK(){
     if (file_exists("fb/vendor/autoload.php")) {
       require_once  "fb/vendor/autoload.php";
@@ -66,7 +71,7 @@
       curl_close($curl);
       return $response;
   }
-  
+
   function httpDelete($path)
   {
       $url = $path;
