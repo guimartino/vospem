@@ -13,7 +13,7 @@
   echo "<br>$r<br>";
   $r = fixJSON($r, "}", 'left', false);
   $r = json_decode($r, true);
-  //$r = strlen($r);
+  //$r = strlen($r); 
   $r .= "aaa";
   print_r($r);
   //echo $t;
