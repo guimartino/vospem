@@ -76,7 +76,7 @@ function getPageSubscription($page_id, $page_token){
   $r = array();
   $r[0] = "add";
   $r[1] = "INSCREVER PAGINA";
-  $r[2] = "success";
+  $r[2] = "success"; 
   if(isset($subscribed->data['0'])) {
     $subscribed = $subscribed->data['0'];
     if($subscribed->id == $app_id){
