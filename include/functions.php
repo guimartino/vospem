@@ -87,6 +87,7 @@
       curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
       $response = curl_exec($curl);
       curl_close($curl);
+      substr($response, 0, strlen($response) - 1);
       return $response;
   }
 
