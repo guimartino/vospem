@@ -73,7 +73,7 @@
       return $response;
   }
 
-  function httpDelete($path)
+  function httpDelete($url)
   {
       /*$url = $path;
       $ch = curl_init();
