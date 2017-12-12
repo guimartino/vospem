@@ -10,8 +10,10 @@
   }else{
     $r = httpPost("https://graph.facebook.com/$id/subscribed_apps?access_token=$token");
   }
-  echo "<br>$r<br>";
+
   $r = fixJSON($r, "}", 'right', false);
+  $r = $r[0];
+  echo "<br>Lado: ".$r[1]."<br>";
   $r = json_decode($r, true);
   //$r = strlen($r);
   $r .= "aaa";

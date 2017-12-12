@@ -105,5 +105,6 @@
             $piece = false;
             break;
     }
+    $piece = array($piece, $side);
     return($piece);
 }
