@@ -36,7 +36,7 @@ try {
       <input type="hidden" name="tipo" value="<?=$s[0]?>">
       <input type="hidden" name="page_id" value="<?=$page_id?>">
       <input type="hidden" name="page_token" value="<?=$page_token?>">
-      <input type="submit" value="<?=$s[1]?>" style="padding:10px 20px 10px 20px">
+      <input type="submit" value="<?=$s[1]?>" id="btn btn-success" style="padding:10px 20px 10px 20px">
     </form>
     <?php
     /*
