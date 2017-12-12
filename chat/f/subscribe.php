@@ -1,6 +1,6 @@
 <?php
-
-
+  include("../../include/data.php");
+  
   //https://graph.facebook.com/ID/subscribed_apps?access_token=PAGE_TOKEN
   $id = $_POST['page_id'];
   $token = $_POST['page_token'];

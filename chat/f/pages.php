@@ -1,25 +1,11 @@
 <?php
+include("../../include/data.php");
 $start = date('Y-m-d H:i:s');
-if(!session_id()) {
-    session_start();
-}
+
 if(!(isset($_SESSION['fb_access_token']))) {
   header('Location: login.php');
 }
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-require_once "../fb/vendor/autoload.php"; // change path as needed
 
-$app_id = "1264011017036295";
-
-
-$fb = new \Facebook\Facebook([
-  'app_id' => $app_id,
-  'app_secret' => 'c1642f39152539b59460933e65c5f0d0',
-  'default_graph_version' => 'v2.11',
-  //'default_access_token' => '{access-token}', // optional
-]);
 try {
   $response = $fb->get(
     '/me/accounts',
@@ -40,7 +26,7 @@ try {
     //echo "<br><br>";
     $fid = $value['id'];
     /*
-      
+
       Checa se pagina está inscrita no app
     */
     $s = getPageSubscription($page_id, $page_token)
