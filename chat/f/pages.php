@@ -29,7 +29,8 @@ try {
 
       Checa se pagina está inscrita no app
     */
-    $s = getPageSubscription($page_id, $page_token)
+    $s = getPageSubscription($page_id, $page_token);
+    echo '<img src="' . getPageImage($page_id, $_SESSION['fb_access_token']). '">';
     ?>
     <br>
     <form method="POST" action="subscribe.php">
@@ -42,8 +43,7 @@ try {
     /*
       Exibe imagem da página (mesmo se estiver oculta)
     */
-    $imagem = getPageImage($page_id, $_SESSION['fb_access_token']);
-    echo '<img src="' . $imagem . '">';
+
 
 
     echo "<br><br>";
