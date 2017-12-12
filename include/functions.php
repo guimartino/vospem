@@ -75,14 +75,19 @@
 
   function httpDelete($path)
   {
-      $url = $path;
+      /*$url = $path;
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL, $url);
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
       $result = curl_exec($ch);
       //$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
       curl_close($ch);
-      return $result;
+      return $result;*/
+      $curl = curl_init($url);
+      curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+      $response = curl_exec($curl);
+      curl_close($curl);
+      return $response;
   }
 
 
