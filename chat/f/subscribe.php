@@ -11,7 +11,7 @@
     $r = httpPost("https://graph.facebook.com/$id/subscribed_apps?access_token=$token");
   }
   echo "<br>$r<br>";
-  $r = json_decode($r, true);
+  $r = json_decode(trim($r), true);
   print_r("aaa".$r."aaa");
   //echo $t;
   // salvar no banco ID da pagina e Token
