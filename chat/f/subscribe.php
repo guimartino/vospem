@@ -1,20 +1,23 @@
 <?php
   include("../../include/data.php");
-  
+
   //https://graph.facebook.com/ID/subscribed_apps?access_token=PAGE_TOKEN
   $id = $_POST['page_id'];
   $token = $_POST['page_token'];
   $t = $_POST['tipo'];
   if($t == "remove"){
-    $t = httpDelete("https://graph.facebook.com/$id/subscribed_apps?access_token=$token");
+    $r = httpDelete("https://graph.facebook.com/$id/subscribed_apps?access_token=$token");
   }else{
-    $t = httpPost("https://graph.facebook.com/$id/subscribed_apps?access_token=$token");
+    $r = httpPost("https://graph.facebook.com/$id/subscribed_apps?access_token=$token");
   }
+
+  $r = json_decode($r, true);
+  print_r($r);
   //echo $t;
   // salvar no banco ID da pagina e Token
 
 
-  header('Location: pages.php');
+  //header('Location: pages.php');
 
 
 
@@ -33,28 +36,3 @@
               Tutorial:
                 https://developers.facebook.com/docs/marketing-api/guides/lead-ads/quickstart/webhooks-integration
       */
-
-
-
-    function httpPost($url, $data = array())
-    {
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($curl);
-        curl_close($curl);
-        return $response;
-    }
-    function httpDelete($path)
-    {
-        $url = $path;
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-        $result = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        return $result;
-    }
