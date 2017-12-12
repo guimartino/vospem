@@ -14,6 +14,7 @@
   //$r = fixJSON($r, "}", 'right', false);
   //$r = $r[0];
   ///echo "<br>Lado: ".$r."<br>";
+  $r = (string) $r;
   $r = json_decode($r, true);
   //$r = strlen($r);
   $r = "aaaa".$r."aaa";
