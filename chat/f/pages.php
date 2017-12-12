@@ -36,7 +36,7 @@ try {
       <input type="hidden" name="tipo" value="<?=$s[0]?>">
       <input type="hidden" name="page_id" value="<?=$page_id?>">
       <input type="hidden" name="page_token" value="<?=$page_token?>">
-      <input type="submit" value="<?=$s[1]?>" class="btn btn-success" style="padding:10px 20px 10px 20px">
+      <input type="submit" value="<?=$s[1]?>" class="btn btn-<?=$s[2];?>" style="padding:10px 20px 10px 20px">
     </form>
     <?php
     /*
@@ -76,11 +76,13 @@ function getPageSubscription($page_id, $page_token){
   $r = array();
   $r[0] = "add";
   $r[1] = "INSCREVER PAGINA";
+  $r[2] = "success";
   if(isset($subscribed->data['0'])) {
     $subscribed = $subscribed->data['0'];
     if($subscribed->id == $app_id){
       $r[0] = "remove";
       $r[1] = "DESINSCREVER PAGINA";
+      $r[2] = "danger";
     }
   }
   return $r;
