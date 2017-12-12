@@ -11,9 +11,9 @@
     $r = httpPost("https://graph.facebook.com/$id/subscribed_apps?access_token=$token");
   }
 
-  $r = fixJSON($r, "}", 'right', false);
-  $r = $r[0];
-  echo "<br>Lado: ".$r[1]."<br>";
+  //$r = fixJSON($r, "}", 'right', false);
+  //$r = $r[0];
+  ///echo "<br>Lado: ".$r."<br>";
   $r = json_decode($r, true);
   //$r = strlen($r);
   $r .= "aaa";
