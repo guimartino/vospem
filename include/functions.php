@@ -3,9 +3,10 @@
   function checkLogin(){
     if(!(isset($_SESSION['fb_access_token']))) {
       header('Location: login.php');
+      exit;
     }
   }
-  
+
   function requireFacebookSDK(){
     if (file_exists("fb/vendor/autoload.php")) {
       require_once  "fb/vendor/autoload.php";
@@ -81,6 +82,6 @@
       $result = curl_exec($ch);
       $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
       curl_close($ch);
-
+      $result = substr($result, 0, -1);
       return $result;
   }
