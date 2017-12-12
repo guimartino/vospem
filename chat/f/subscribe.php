@@ -12,7 +12,7 @@
   }
   echo "<br>$r<br>";
   $r = json_decode($r, true);
-  print_r(json_decode(json_encode($r), true));
+  print_r($r);
   //echo $t;
   // salvar no banco ID da pagina e Token
 
