@@ -18,14 +18,9 @@ try {
     $page_name = $value['name'];
     $page_id = $value['id'];
     echo 'Nome da pagina: ' . $page_name . '<br>';
-    //echo 'ID: ' . $value['id'] . '<br>';
-    //echo 'Acces Token: ' . $accessTokenPagina;
-    //echo "<br><br>";
-    $fid = $value['id'];
-    /*
 
-      Checa se pagina está inscrita no app
-    */
+    $fid = $value['id'];
+    
     $s = getPageSubscription($page_id, $page_token);
     echo '<img src="' . getPageImage($page_id, $_SESSION['fb_access_token']). '">';
     ?>
