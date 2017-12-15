@@ -2,8 +2,7 @@
 include("../../include/data.php");
 $start = date('Y-m-d H:i:s');
 checkLogin();
-
-
+echo "Inicio";
 /* PHP SDK v5.0.0 */
 /* make the API call */
 try {
