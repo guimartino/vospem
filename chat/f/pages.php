@@ -18,9 +18,10 @@ try {
     $page_name = $value['name'];
     $page_id = $value['id'];
     echo 'Nome da pagina: ' . $page_name . '<br>';
+    echo 'Token: ' . $page_token;
 
     $fid = $value['id'];
-    
+
     $s = getPageSubscription($page_id, $page_token);
     echo '<img src="' . getPageImage($page_id, $_SESSION['fb_access_token']). '">';
     ?>
