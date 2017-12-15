@@ -7,9 +7,10 @@ echo "Inicio";
 /* make the API call */
 try {
   // Returns a `Facebook\FacebookResponse` object
+  //ID_CONVERSA/?fields=can_reply,former_participants,id,is_subscribed,link,message_count,participants,name,senders,subject
   $response = $fb->get(
-    '/720577281466461/conversations',
-    'EAAR9nHZBpogcBAMe0g7vRKCEVOiguJ7p4kom0N7hJQmHV8wsbIUp1tiimj9xCPSWaVklb096Ld4ZC34OWUp9BHmvN3gSmc3fddGYpVN0SdqZBFhEWW5fJ53bt0o4FXQgdXydMYFjX7pY2STb5ZC10GKRt8kPcyk47Xyj6e65XlmipzZBREmu8'
+    '/523235258054632/conversations',
+    'EAAR9nHZBpogcBADZCSlhtAcmMAp2yaWVtdIsHhhAZBN2iXXfejdaisVUpFZB9SYD6W8Qr97NSCaMHHEEuuDdUQOylT3pXr3NiuoneOa0x4jKoSDvXfz92gycDxg606YqsYOZBOaR2zxLPkgK3k9dZBHaVIMZBzMD4i55Sm1uQkSmfAnHfvrR3wG'
   );
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
   echo 'Graph returned an error: ' . $e->getMessage();
