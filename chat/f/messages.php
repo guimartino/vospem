@@ -9,7 +9,7 @@ try {
   // Returns a `Facebook\FacebookResponse` object
   $response = $fb->get(
     '/720577281466461/conversations',
-    ''.$_SESSION['fb_access_token']
+    'EAAR9nHZBpogcBAMe0g7vRKCEVOiguJ7p4kom0N7hJQmHV8wsbIUp1tiimj9xCPSWaVklb096Ld4ZC34OWUp9BHmvN3gSmc3fddGYpVN0SdqZBFhEWW5fJ53bt0o4FXQgdXydMYFjX7pY2STb5ZC10GKRt8kPcyk47Xyj6e65XlmipzZBREmu8'
   );
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
   echo 'Graph returned an error: ' . $e->getMessage();
