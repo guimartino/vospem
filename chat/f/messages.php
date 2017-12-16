@@ -19,7 +19,8 @@ try {
   echo 'Facebook SDK returned an error: ' . $e->getMessage();
   exit;
 }
+
 $graphEdge = $response->getGraphEdge();
 $array = $graphEdge->asArray();
-print_r($graphEdge);
+print_r($array);
 /* handle the result */
