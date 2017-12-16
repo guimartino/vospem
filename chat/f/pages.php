@@ -32,6 +32,12 @@ try {
       <input type="hidden" name="page_token" value="<?=$page_token?>">
       <input type="submit" value="<?=$s[1]?>" class="btn btn-<?=$s[2];?>" style="padding:10px 20px 10px 20px">
     </form>
+    <br>
+    <form method="POST" action="messages.php">
+      <input type="hidden" name="page_id" value="<?=$page_id?>">
+      <input type="hidden" name="page_token" value="<?=$page_token?>">
+      <input type="submit" value="Mostrar estatisticas" class="btn btn-primary?>" style="padding:10px 20px 10px 20px">
+    </form>
     <?php
     /*
       Exibe imagem da página (mesmo se estiver oculta)
