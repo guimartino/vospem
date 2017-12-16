@@ -25,5 +25,9 @@ $array = $graphEdge->asArray();
 //print_r($array);
 foreach ($array as $key => $value) {
   echo "Id " . $key . ": " . $value['id']."<br>";
+  $conversa = file_get_contents('https://graph.facebook.com/'.$value['id'].'/?fields=can_reply,former_participants,id,is_subscribed,link,message_count,participants,name,senders,subject');
+  print_r($conversa);
+
+  echo "<br><br>";
 }
 /* handle the result */
