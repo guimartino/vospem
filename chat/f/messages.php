@@ -22,8 +22,8 @@ try {
 
 $graphEdge = $response->getGraphEdge();
 $array = $graphEdge->asArray();
-print_r($array);
+//print_r($array);
 foreach ($array as $key => $value) {
-  print_r($key);
+  echo "Id " . $key . ": " . $value['id']."<br>";
 }
 /* handle the result */
