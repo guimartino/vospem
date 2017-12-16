@@ -9,8 +9,8 @@ try {
   // Returns a `Facebook\FacebookResponse` object
   //ID_CONVERSA/?fields=can_reply,former_participants,id,is_subscribed,link,message_count,participants,name,senders,subject
   $response = $fb->get(
-    '/523235258054632/conversations',
-    'EAAR9nHZBpogcBADZCSlhtAcmMAp2yaWVtdIsHhhAZBN2iXXfejdaisVUpFZB9SYD6W8Qr97NSCaMHHEEuuDdUQOylT3pXr3NiuoneOa0x4jKoSDvXfz92gycDxg606YqsYOZBOaR2zxLPkgK3k9dZBHaVIMZBzMD4i55Sm1uQkSmfAnHfvrR3wG'
+    '/'.$_POST['page_id'].'/conversations',
+    ''.$_POST['page_token']
   );
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
   echo 'Graph returned an error: ' . $e->getMessage();
