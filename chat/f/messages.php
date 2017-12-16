@@ -21,5 +21,5 @@ try {
 }
 $graphEdge = $response->getGraphEdge();
 $array = $graphEdge->asArray();
-print_r($graphNode);
+print_r($graphEdge);
 /* handle the result */
