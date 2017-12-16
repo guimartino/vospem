@@ -34,6 +34,7 @@ foreach ($array as $key => $value) {
     }
   }
   //print_r();
+  //2233617316664178?fields=address,name,birthday,email,first_name,gender,hometown,languages,locale,location,political,religion,work
 
   echo "<br><br>";
 }
