@@ -18,7 +18,7 @@ try {
     $page_name = $value['name'];
     $page_id = $value['id'];
     echo 'Nome da pagina: ' . $page_name . '<br>';
-    echo 'Token: ' . $page_token;
+    echo 'Token: ' . $page_token. '<br>';
 
     $fid = $value['id'];
 
