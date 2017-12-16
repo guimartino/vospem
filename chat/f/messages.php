@@ -23,4 +23,7 @@ try {
 $graphEdge = $response->getGraphEdge();
 $array = $graphEdge->asArray();
 print_r($array);
+foreach ($array as $key => $value) {
+  print_r($key);
+}
 /* handle the result */
