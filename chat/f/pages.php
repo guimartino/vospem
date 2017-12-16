@@ -2,7 +2,7 @@
 include("../../include/data.php");
 $start = date('Y-m-d H:i:s');
 checkLogin();
-echo "<div class='container'>";
+echo "<div class='' style='margin:20px;'>";
 try {
   $response = $fb->get(
     '/me/accounts',
@@ -32,7 +32,6 @@ try {
       <input type="hidden" name="page_token" value="<?=$page_token?>">
       <input type="submit" value="<?=$s[1]?>" class="btn btn-<?=$s[2];?>" style="padding:10px 20px 10px 20px">
     </form>
-    <br>
     <form method="POST" action="messages.php">
       <input type="hidden" name="page_id" value="<?=$page_id?>">
       <input type="hidden" name="page_token" value="<?=$page_token?>">
