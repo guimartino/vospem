@@ -27,7 +27,7 @@ $array = $graphEdge->asArray();
 foreach ($array as $key => $value) {
   echo "Id " . $key . ": " . $value['id']."<br>";
   $conversa = file_get_contents('https://graph.facebook.com/'.$value['id'].'/?fields=can_reply,former_participants,id,is_subscribed,link,message_count,participants,name,senders,subject&access_token='.$_POST['page_token']);
-  print_r($conversa);
+  print_r(json_decode($conversa, true);
 
   echo "<br><br>";
 }
