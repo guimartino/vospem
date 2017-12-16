@@ -28,9 +28,10 @@ foreach ($array as $key => $value) {
   echo "Id " . $key . ": " . $value['id']."<br>";
   $conversas = file_get_contents('https://graph.facebook.com/'.$value['id'].'/?fields=can_reply,former_participants,id,is_subscribed,link,message_count,participants,name,senders,subject&access_token='.$_POST['page_token']);
   $conversas = json_decode($conversas, true);
-  foreach ($conversas['participants']['data'] as $key => $value) {
-    echo $key . ': '. $value;
-      echo "<br>";
+  foreach ($conversas['participants']['data'] as $k => $p) {
+    if($p['id']!=$_POST['page_id']){
+      echo "Nome: ".$p['name']."<br>"."Id: ".$p['id'];
+    }
   }
   //print_r();
 
