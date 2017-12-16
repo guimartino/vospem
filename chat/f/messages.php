@@ -19,7 +19,7 @@ try {
   echo 'Facebook SDK returned an error: ' . $e->getMessage();
   exit;
 }
-$graphNode = $response->getGraphNode();
+$graphNode = $response->getGraphEdge();
 print_r($graphNode);
 /* handle the result */
 echo "fim";
