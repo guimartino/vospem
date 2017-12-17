@@ -10,12 +10,19 @@
   function requireFacebookSDK(){
     if (file_exists("fb/vendor/autoload.php")) {
       require_once  "fb/vendor/autoload.php";
+      return;
     }elseif(file_exists("../fb/vendor/autoload.php")) {
       require_once  "../fb/vendor/autoload.php";
+      return;
     }elseif(file_exists("../../fb/vendor/autoload.php")) {
       require_once  "../../fb/vendor/autoload.php";
+      return;
     }elseif(file_exists("../../../fb/vendor/autoload.php")) {
       require_once  "../../../fb/vendor/autoload.php";
+      return;
+    }elseif(file_exists("../chat/fb/vendor/autoload.php")) {
+      require_once  "../chat/fb/vendor/autoload.php";
+      return;
     }
   }
 
