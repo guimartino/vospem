@@ -75,11 +75,15 @@ if($pageID == "720577281466461"){
 }
 define('API_URL', 'https://graph.facebook.com/v2.11/me/messages?access_token='.BOT_TOKEN);
 wfile("BOTTOKEN: ".(BOT_TOKEN));
+
 if (isset($update['entry'][0]['messaging'][0])) {
 
 	$senderID = $update['entry'][0]['messaging'][0]['sender']['id'];
 	//$pageID
-	if(getUserLocked($pageID, $senderID) != "no"){
+	wfile("SENDER ID: ".($senderID));
+	$blocked = getUserLocked($pageID, $senderID);
+	wfile("Send message: ".($send));
+	if($send == "yes"){
   	processMessage($update['entry'][0]['messaging'][0]);
 	}
 }
