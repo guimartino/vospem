@@ -87,27 +87,39 @@
 
       return $result;
   }
-  function fixJSON($string, $character = "}", $side='left', $keep_character=true) {
-    echo "<br>FUNCAO";
-    echo "<br>$side";
-    echo "<br>FUNCAO<br>";
-    $offset = ($keep_character ? 1 : 0);
-    $whole_length = strlen($string);
-    $right_length = (strlen(strrchr($string, $character)) - 1);
-    $left_length = ($whole_length - $right_length - 1);
-    switch($side) {
-        case 'left':
-            $piece = substr($string, 0, ($left_length + $offset));
-            break;
-        case 'right':
-            $start = (0 - ($right_length + $offset));
-            $piece = substr($string, $start);
-            break;
-        default:
-            $piece = false;
-            break;
+
+  function getUsersMessagePage($page_id, $page_token){
+
+    global $fb;
+    try {
+      // Returns a `Facebook\FacebookResponse` object
+      //ID_CONVERSA/?fields=can_reply,former_participants,id,is_subscribed,link,message_count,participants,name,senders,subject
+      $response = $fb->get(
+        '/'.$page_id.'/conversations',
+        ''.$page_token
+      );
+    } catch(Facebook\Exceptions\FacebookResponseException $e) {
+      echo 'Graph returned an error: ' . $e->getMessage();
+      exit;
+    } catch(Facebook\Exceptions\FacebookSDKException $e) {
+      echo 'Facebook SDK returned an error: ' . $e->getMessage();
+      exit;
     }
-    $piece = array($piece, $side);
-    print_r($piece);
-    return($piece);
+
+    $graphEdge = $response->getGraphEdge();
+    $array = $graphEdge->asArray();
+    $users = array();
+    foreach ($array as $key => $value) {
+      echo "Id " . $key . ": " . $value['id']."<br>";
+      $conversas = file_get_contents('https://graph.facebook.com/'.$value['id'].'/?fields=can_reply,former_participants,id,is_subscribed,link,message_count,participants,name,senders,subject&access_token='.$_POST['page_token']);
+      $conversas = json_decode($conversas, true);
+      foreach ($conversas['participants']['data'] as $k => $p) {
+        if($p['id']!=$_POST['page_id']){
+          $users[$p['id']] = $p['name'];
+        }
+      }
+
+  }
+  return $users;
+
 }
