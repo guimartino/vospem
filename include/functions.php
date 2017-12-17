@@ -61,9 +61,14 @@
     $src = 'data:;base64,'.$imageData;
     return $src;
   }
+  function getUserImage($user_id){
+    $image = "https://graph.facebook.com/$page_id/picture?type=large";
+    $imageData = base64_encode(file_get_contents($image));
+    $src = 'data:;base64,'.$imageData;
+    return $src;
+  }
 
-  function httpPost($url, $data = array())
-  {
+  function httpPost($url, $data = array()){
       $curl = curl_init($url);
       curl_setopt($curl, CURLOPT_POST, true);
       curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
