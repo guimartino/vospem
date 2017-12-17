@@ -51,14 +51,14 @@ checkLogin();
     var user_id = divName.split("_")[1];
     if(div.className == "yes"){
       div.className = "no";
-      url = "../../include/actions.php?action=LockUnlockUser&value=0&user_id="+user_id+"&page_id=<?=$page_id?>";
+      url = "../../include/actions.php?action=LockUnlockUser&value=1&user_id="+user_id+"&page_id=<?=$page_id?>";
       $.get(url, function(data, status){
         alert("Usuario bloqueado com sucesso");
         console.log(url);
       });
     }else{
       div.className = "yes";
-      url = "../../include/actions.php?action=LockUnlockUser&value=1&user_id="+user_id+"&page_id=<?=$page_id?>";
+      url = "../../include/actions.php?action=LockUnlockUser&value=0&user_id="+user_id+"&page_id=<?=$page_id?>";
       $.get(url, function(data, status){
         alert("Usuario desbloqueado");
         console.log(url);
