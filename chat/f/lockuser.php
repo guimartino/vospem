@@ -14,7 +14,7 @@ checkLogin();
 /* PHP SDK v5.0.0 */
 /* make the API call */
   $users = getUsersMessagePage($fb, $page_id, $page_token);
-  print_r($users);
+  //print_r($users);
   //graph.facebook.com/1428386897275804/picture?type=large
   foreach ($users as $user_id => $user_name) {
       $user_image = getUserImage($user_id);
@@ -51,13 +51,17 @@ checkLogin();
     var user_id = divName.split("_")[1];
     if(div.className == "yes"){
       div.className = "no";
-      $.get("../../include/actions.php?action=LockUnlockUser&value=0&user_id="+user_id+"&page_id=<?=$page_id?>", function(data, status){
+      url = "../../include/actions.php?action=LockUnlockUser&value=0&user_id="+user_id+"&page_id=<?=$page_id?>";
+      $.get(url, function(data, status){
         alert("Usuario bloqueado com sucesso");
+        console.log(url);
       });
     }else{
       div.className = "yes";
-      $.get("../../include/actions.php?action=LockUnlockUser&value=1&user_id="+user_id+"&page_id=<?=$page_id?>", function(data, status){
+      url = "../../include/actions.php?action=LockUnlockUser&value=1&user_id="+user_id+"&page_id=<?=$page_id?>";
+      $.get(url, function(data, status){
         alert("Usuario desbloqueado");
+        console.log(url);
       });
     }
 
