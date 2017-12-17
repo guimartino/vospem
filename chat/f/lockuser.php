@@ -19,8 +19,8 @@ checkLogin();
   foreach ($users as $user_id => $user_name) {
       $user_image = getUserImage($user_id);
       ?>
-        <div style="border:2px solid #007001; background:#60c961; width:50%; height: 100px; margin-bottom: 10px; border-radius:5px;">
-          <img src="<?=$user_image?>" style="width:80px;">
+        <div style="" id="div_<?=$user_id;?>" onClick="changeclass('div_<?=$user_id?>')">
+          <img src="<?=$user_image?>" style="" class="no">
         </div>
       <?php
   }
@@ -32,10 +32,27 @@ checkLogin();
 
 
 ?>
+<script>
+    function changeclass(divName) {
 
+    var div = document.getElementById(divName);
+
+    if(div.className == "yes"){
+      div.className = "no";
+    }else{
+      div.className = "yes";
+    }
+
+    }
+</script>
 <style>
   .yes{
-
-
+    border:2px solid #007001; background:#60c961; width:50%; height: 100px; margin-bottom: 10px; border-radius:5px;
+    width:80px;
   }
-</style
+
+  .no{
+    border:2px solid #7f0000; background:#e06b6b; width:50%; height: 100px; margin-bottom: 10px; border-radius:5px;
+    width:80px;
+  }
+</style>
