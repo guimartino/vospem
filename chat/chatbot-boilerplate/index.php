@@ -63,6 +63,7 @@ if ($hub_verify_token === VERIFY_TOKEN) {
 $update_response = file_get_contents("php://input");
 
 $update = json_decode($update_response, true);
+wfile("Response: ".($update));
 $pageID = $update['entry'][0]['id'];
 wfile("Page ID: ".($pageID));
 if($pageID == "720577281466461"){
@@ -89,6 +90,10 @@ if (isset($update['entry'][0]['messaging'][0])) {
 		wfile("Not supposed to send the message!");
 	}
 }
+
+
+
+
 
 function wfile($text){
 	if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
