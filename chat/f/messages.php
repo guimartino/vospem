@@ -38,7 +38,7 @@ foreach ($array as $key => $value) {
       $response = $fb->get(
         '/'.$p['id'].'?fields=name,age_range,ids_for_pages&appsecret_proof='.$appsecret_proof,
         ''.$_POST['page_token']
-      );
+      ); 
     } catch(Facebook\Exceptions\FacebookResponseException $e) {
       echo 'Graph returned an error: ' . $e->getMessage();
       //exit;
