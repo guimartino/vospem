@@ -53,6 +53,6 @@ checkLogin();
 
   .no{
     border:2px solid #7f0000; background:#e06b6b; width:50%; height: 100px; margin-bottom: 10px; border-radius:5px;
-    width:80px;
+    
   }
 </style>
