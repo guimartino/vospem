@@ -63,8 +63,8 @@ if ($hub_verify_token === VERIFY_TOKEN) {
 $update_response = file_get_contents("php://input");
 
 $update = json_decode($update_response, true);
-$results = print_r($update, true);
-wfile("Response: ".($results));
+//$results = print_r($update, true);
+//wfile("Response: ".($results));
 
 
 
@@ -86,7 +86,14 @@ if (isset($update['entry'][0]['messaging'][0])) {
 	$senderID = $update['entry'][0]['messaging'][0]['sender']['id'];
 	//$pageID
 	wfile("SENDER ID: ".($senderID));
-	$blocked = getUserLocked($pageID, $senderID);
+
+
+	$userInfo = json_decode(file_get_contents("https://graph.facebook.com/v2.11/$senderID?fields=first_name,last_name,profile_pic&access_token=" . BOT_TOKEN));
+
+	$results = print_r($userInfo, true);
+	wfile("User information: ".($userInfo));
+	$user_id = "";
+	$blocked = getUserLocked($pageID, $user_id);
 	wfile("Send message: ".($send));
 	if($send == "yes"){
   	processMessage($update['entry'][0]['messaging'][0]);
