@@ -22,8 +22,8 @@ try {
     $page_id = $value['id'];
     echo 'Nome da pagina: ' . $page_name . '<br>';
     echo 'Token: ' . $page_token. '<br>';
-    $appsecret_proof= hash_hmac('sha256', '1264011017036295|BZ4RY8aGM6VvOhC8nGUWVkqzhoo', 'c1642f39152539b59460933e65c5f0d0');
-    echo $appsecret_proof. '<br>';
+    //$appsecret_proof= hash_hmac('sha256', '1264011017036295|BZ4RY8aGM6VvOhC8nGUWVkqzhoo', 'c1642f39152539b59460933e65c5f0d0');
+    //echo $appsecret_proof. '<br>';
     $fid = $value['id'];
 
     $s = getPageSubscription($page_id, $page_token);
