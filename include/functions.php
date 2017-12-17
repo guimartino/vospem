@@ -65,7 +65,7 @@
   function getPageImage($page_id, $fb_token){
     $appsecret_proof= hash_hmac('sha256', $fb_token, 'c1642f39152539b59460933e65c5f0d0');
     $image = "https://graph.facebook.com/$page_id/picture?type=large&appsecret_proof=$appsecret_proof&access_token=".$fb_token;
-    echo "<br>".$image."<br>";
+    //echo "<br>".$image."<br>";
     $imageData = base64_encode(file_get_contents($image));
     $src = 'data:;base64,'.$imageData;
     return $src;
