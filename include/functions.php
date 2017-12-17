@@ -119,7 +119,7 @@
   function getUserLocked($page_id, $user_id){
     $con = con();
     $sql = "SELECT * FROM locked_users WHERE id_user = ? AND id_page = ? AND is_blocked = 1";
-    $stmt = $PDO->prepare( $sql );
+    $stmt = $con->prepare( $sql );
     $stmt->bindParam(1, $user_id);
     $stmt->bindParam(2, $page_id);
     while($row = $stmt->fetch( PDO::FETCH_ASSOC )) {
