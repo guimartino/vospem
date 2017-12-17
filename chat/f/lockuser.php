@@ -48,7 +48,7 @@ checkLogin();
     function changeclass(divName) {
 
     var div = document.getElementById(divName);
-    var user_id = div.split("_")[1];
+    var user_id = divName.split("_")[1];
     if(div.className == "yes"){
       div.className = "no";
       $.get("../../actions.php?action=LockUnlockUser&value=0&user_id="+user_id+"&page_id=<?=$page_id?>", function(data, status){
