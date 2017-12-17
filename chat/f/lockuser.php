@@ -46,7 +46,7 @@ checkLogin();
 
     var div = document.getElementById(divName);
 
-    if(div.className == "yes"){ 
+    if(div.className == "yes"){
       div.className = "no";
     }else{
       div.className = "yes";
@@ -56,7 +56,7 @@ checkLogin();
 </script>
 <style>
   .yes{
-    border:2px solid #007001; background:#60c961; height: 100px; margin-bottom: 10px; border-radius:5px;
+    border:2px solid #007001; background:#60c961; min-height: 100px; margin-bottom: 10px; border-radius:5px;
     padding:15px;
 
   }
@@ -68,7 +68,7 @@ checkLogin();
     color: #7f0000;
   }
   .no{
-    border:2px solid #7f0000; background:#e06b6b; height: 100px; margin-bottom: 10px; border-radius:5px;
+    border:2px solid #7f0000; background:#e06b6b; min-height: 100px; margin-bottom: 10px; border-radius:5px;
     padding:15px;
   }
 </style>
