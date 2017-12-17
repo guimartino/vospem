@@ -2,7 +2,7 @@
 include("../../include/data.php");
 $start = date('Y-m-d H:i:s');
 checkLogin();
-  if(isset($_POST)){
+  if(isset($_POST['page_id'])){
     $_SESSION['lockuser_page_id'] = $_POST['page_id'];
     $_SESSION['lockuser_page_token'] = $_POST['page_token'];
   }
