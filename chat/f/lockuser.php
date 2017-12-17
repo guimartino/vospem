@@ -19,11 +19,7 @@ checkLogin();
   foreach ($users as $user_id => $user_name) {
       $user_image = getUserImage($user_id);
       $class = "yes";
-      $user_blocked = getUserBlocked($page_id, $user_id);
-
-
-
-
+      $user_blocked = getUserLocked($page_id, $user_id);
 
       ?>
         <div style="" id="div_<?=$user_id;?>" onClick="changeclass('div_<?=$user_id?>')" class="<?=$user_blocked;?>">
@@ -52,11 +48,17 @@ checkLogin();
     function changeclass(divName) {
 
     var div = document.getElementById(divName);
-
+    var user_id = div.split("_")[1];
     if(div.className == "yes"){
       div.className = "no";
+      $.get("../../actions.php?action=LockUnlockUser&value=0&user_id="+user_id+"&page_id=<?=$page_id?>", function(data, status){
+        alert("Usuario bloqueado com sucesso");
+      });
     }else{
       div.className = "yes";
+      $.get("../../actions.php?action=LockUnlockUser&value=1&user_id="+user_id+"&page_id=<?=$page_id?>", function(data, status){
+        alert("Usuario desbloqueado");
+      });
     }
 
     }

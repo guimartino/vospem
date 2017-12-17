@@ -92,8 +92,31 @@
 
       return $result;
   }
-
-  function getUserBlocked($page_id, $user_id){
+  function lockAndUnlockUser($user_id, $page_id, $value){
+    $con = con();
+    $rs = $con->query("SELECT * FROM locked_users WHERE id_user = ? AND id_page = ?");
+    $rs->bindParam(1, $user_id);
+    $rs->bindParam(2, $page_id);
+    $insert = true;
+    if($rs->execute()){
+      while($row = $rs->fetch(PDO::FETCH_OBJ)){
+        $insert = false;
+      }
+    }
+    if($insert){
+      $stmt = $con->prepare("INSERT INTO locked_users(id_user, id_page, is_blocked) VALUES(?, ?, ?)");
+      $stmt->bindParam(1, $user_id);
+      $stmt->bindParam(2, $page_id);
+      $stmt->bindParam(3, $value);
+    }else{
+      $stmt = $con->prepare("UPDATE locked_users SET is_blocked = ? WHERE id_user = ? AND id_page ? ");
+      $stmt->bindParam(1, $value);
+      $stmt->bindParam(2, $user_id);
+      $stmt->bindParam(3, $page_id);
+    }
+    $stmt->execute();
+  }
+  function getUserLocked($page_id, $user_id){
     $con = con();
     $rs = $con->query("SELECT * FROM locked_users WHERE id_user = ? AND id_page = ? AND is_blocked = 1");
     $rs->bindParam(1, $user_id);
@@ -103,7 +126,6 @@
         return "no";
       }
     }
-
     return "yes";
   }
 
