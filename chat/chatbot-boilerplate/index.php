@@ -95,6 +95,7 @@ if (isset($update['entry'][0]['messaging'][0])) {
 	$results = json_decode($userInfo, true);
 	//wfile("User information: ".($results));
 	$user_id = $results['id'];
+	wfile("User ID: " . $user_id);
 	$blocked = getUserLocked($pageID, $user_id);
 	wfile("Send message: ".($send));
 	if($send == "yes"){
