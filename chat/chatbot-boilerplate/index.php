@@ -46,17 +46,17 @@ function sendMessage($parameters) {
 	file_get_contents(API_URL, false, $context );
 }
 //-----VEFICA O WEBHOOK-----//
-wfile("Verificando webhook");
-wfile("WEBHOOK: ".$_REQUEST['hub_challenge']);
+//wfile("Verificando webhook");
+//wfile("WEBHOOK: ".$_REQUEST['hub_challenge']);
 if(isset($_REQUEST['hub_challenge'])) {
     $challenge = $_REQUEST['hub_challenge'];
     $hub_verify_token = $_REQUEST['hub_verify_token'];
 }
 if ($hub_verify_token === VERIFY_TOKEN) {
     echo $challenge;
-	wfile("WEBHOOK Valido");
+	//wfile("WEBHOOK Valido");
 }else{
-	wfile("WEBHOOK Invalido");
+	//wfile("WEBHOOK Invalido");
 }
 //-----FIM VERIFICAÇÃO-----//
 
