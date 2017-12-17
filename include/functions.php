@@ -53,7 +53,7 @@
       }
     }
     return $r;
-  }
+  } 
 
   function getPageImage($page_id, $fb_token){
     $image = "https://graph.facebook.com/$page_id/picture?type=large&access_token=".$fb_token;
@@ -62,7 +62,7 @@
     return $src;
   }
   function getUserImage($user_id){
-    $image = "https://graph.facebook.com/$page_id/picture?type=large";
+    $image = "https://graph.facebook.com/$user_id/picture?type=large";
     $imageData = base64_encode(file_get_contents($image));
     $src = 'data:;base64,'.$imageData;
     return $src;
