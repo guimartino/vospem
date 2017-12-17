@@ -63,7 +63,11 @@ if ($hub_verify_token === VERIFY_TOKEN) {
 $update_response = file_get_contents("php://input");
 
 $update = json_decode($update_response, true);
-wfile("Response: ".(var_dump($update)));
+$results = print_r($update, true);
+wfile("Response: ".($results));
+
+
+
 $pageID = $update['entry'][0]['id'];
 wfile("Page ID: ".($pageID));
 if($pageID == "720577281466461"){
