@@ -118,16 +118,14 @@
   }
   function getUserLocked($page_id, $user_id){
     $con = con();
-
-    $rs = $con->query("SELECT * FROM locked_users WHERE id_user = ? AND id_page = ? AND is_blocked = 1");
-    print_r($rs);
-    $rs->bindParam(1, $user_id);
-    $rs->bindParam(2, $page_id);
-    if($rs->execute()){
-      while($row = $rs->fetch(PDO::FETCH_OBJ)){
+    $sql = "SELECT * FROM locked_users WHERE id_user = ? AND id_page = ? AND is_blocked = 1";
+    $stmt = $PDO->prepare( $sql );
+    $stmt->bindParam(1, $user_id);
+    $stmt->bindParam(2, $page_id);
+    while($row = $stmt->fetch( PDO::FETCH_ASSOC )) {
         return "no";
-      }
     }
+
     return "yes";
   }
 
