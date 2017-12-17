@@ -14,7 +14,7 @@ checkLogin();
   }
 
     $page_id = $_SESSION['lockuser_page_id'];
-    $page_token = $_SESSION['page_token'];
+    $page_token = $_SESSION['lockuser_page_token'];
 
 /* PHP SDK v5.0.0 */
 /* make the API call */
