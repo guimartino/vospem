@@ -88,12 +88,12 @@ if (isset($update['entry'][0]['messaging'][0])) {
 	wfile("SENDER ID: ".($senderID));
 
 	$url = "https://graph.facebook.com/v2.11/$senderID?fields=first_name,last_name,profile_pic&access_token=" . BOT_TOKEN;
-	wfile("URL API: ".($url));
+	//wfile("URL API: ".($url));
 	$userInfo = (file_get_contents($url));
-	wfile("JSON: ".($userInfo));
+	//wfile("JSON: ".($userInfo));
 
 	$results = print_r(json_decode($userInfo, true), true);
-	wfile("User information: ".($userInfo));
+	wfile("User information: ".($results));
 	$user_id = "";
 	$blocked = getUserLocked($pageID, $user_id);
 	wfile("Send message: ".($send));
