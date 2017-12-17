@@ -2,12 +2,12 @@
 include("../../include/data.php");
 $start = date('Y-m-d H:i:s');
 checkLogin();
-  if(isset($_SESSION['lockuser_page_id']) && $_SESSION['lockuser_page_id'] != $_POST['page_id']){
+  if(!isset($_SESSION['lockuser_page_id']) && isset($_POST['page_id'])){
     $_SESSION['lockuser_page_id'] = $_POST['page_id'];
   }elseif(!isset($_SESSION['lockuser_page_id'])){
     $_SESSION['lockuser_page_id'] = $_POST['page_id'];
   }
- if(isset($_SESSION['lockuser_page_token']) && $_SESSION['lockuser_page_token'] != $_POST['page_token']){
+ if(!isset($_SESSION['lockuser_page_token']) && isset($_POST['page_token'])){
     $_SESSION['lockuser_page_token'] = $_POST['page_token'];
   }elseif(!isset($_SESSION['lockuser_page_token'])){
     $_SESSION['lockuser_page_token'] = $_POST['page_token'];
