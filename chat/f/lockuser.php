@@ -25,7 +25,7 @@ checkLogin();
       $user_image = getUserImage($user_id);
       ?>
         <div style="border:2px solid #007001; background:#60c961; width:50%; height: 100px; margin-bottom: 10px; border-radius:5px;">
-          <img src="<?=$user_image?>">
+          <img src="<?=$user_image?>" style="width:80px;">
         </div>
       <?php
   }
