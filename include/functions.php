@@ -101,7 +101,7 @@
   }
   function lockAndUnlockUser($user_id, $page_id, $value){
     $con = con();
-    $rs = $con->query("SELECT * FROM locked_users WHERE id_user = ? AND id_page = ?");
+    $rs = $con->prepare("SELECT * FROM locked_users WHERE id_user = ? AND id_page = ?");
     $rs->bindParam(1, $user_id);
     $rs->bindParam(2, $page_id);
     $insert = true;
