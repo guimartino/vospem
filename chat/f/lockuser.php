@@ -20,7 +20,16 @@ checkLogin();
       $user_image = getUserImage($user_id);
       ?>
         <div style="" id="div_<?=$user_id;?>" onClick="changeclass('div_<?=$user_id?>')" class="yes">
-          <img src="<?=$user_image?>"style="width:80px;">
+          <table>
+            <tr>
+              <td>
+                <img src="<?=$user_image?>"style="width:80px;">
+              </td>
+              <td>
+                <span><?=$user_name?></span>
+              </td>
+            </tr>
+          </table>
         </div>
       <?php
   }
@@ -47,12 +56,19 @@ checkLogin();
 </script>
 <style>
   .yes{
-    border:2px solid #007001; background:#60c961; width:50%; height: 100px; margin-bottom: 10px; border-radius:5px;
+    border:2px solid #007001; background:#60c961; height: 100px; margin-bottom: 10px; border-radius:5px;
+    padding:30px;
 
   }
+  .yes span{
+      color: #007001;
+    }
 
   .no{
-    border:2px solid #7f0000; background:#e06b6b; width:50%; height: 100px; margin-bottom: 10px; border-radius:5px;
-    
+    color: #7f0000;
+  }
+  .no{
+    border:2px solid #7f0000; background:#e06b6b; height: 100px; margin-bottom: 10px; border-radius:5px;
+    padding:30px;
   }
 </style>
