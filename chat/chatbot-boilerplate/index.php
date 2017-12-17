@@ -85,6 +85,8 @@ if (isset($update['entry'][0]['messaging'][0])) {
 	wfile("Send message: ".($send));
 	if($send == "yes"){
   	processMessage($update['entry'][0]['messaging'][0]);
+	}else{
+		wfile("Not supposed to send the message!");
 	}
 }
 
