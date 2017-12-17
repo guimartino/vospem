@@ -110,7 +110,7 @@
     $array = $graphEdge->asArray();
     $users = array();
     foreach ($array as $key => $value) {
-      echo "Id " . $key . ": " . $value['id']."<br>";
+      //echo "Id " . $key . ": " . $value['id']."<br>";
       $conversas = file_get_contents('https://graph.facebook.com/'.$value['id'].'/?fields=can_reply,former_participants,id,is_subscribed,link,message_count,participants,name,senders,subject&access_token='.$_POST['page_token']);
       $conversas = json_decode($conversas, true);
       foreach ($conversas['participants']['data'] as $k => $p) {
