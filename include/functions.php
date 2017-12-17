@@ -118,8 +118,9 @@
   }
   function getUserLocked($page_id, $user_id){
     $con = con();
-    print_r($con);
-    $rs = $con->query("SELECT * FROM locked_users WHERE id_user = ? AND id_page = ? AND is_blocked = 1"); 
+
+    $rs = $con->query("SELECT * FROM locked_users WHERE id_user = ? AND id_page = ? AND is_blocked = 1");
+    print_r($rs);
     $rs->bindParam(1, $user_id);
     $rs->bindParam(2, $page_id);
     if($rs->execute()){
