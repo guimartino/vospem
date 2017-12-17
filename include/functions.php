@@ -130,6 +130,7 @@
     $stmt = $con->prepare( $sql );
     $stmt->bindParam(1, $user_id);
     $stmt->bindParam(2, $page_id);
+    $stmt->execute();
     while($row = $stmt->fetch( PDO::FETCH_ASSOC )) {
         return "no";
     }
