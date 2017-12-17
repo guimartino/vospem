@@ -1,5 +1,6 @@
 <?php
-	ini_set('display_errors', 1);
+include("../../include/data.php");
+ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 //https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-received
@@ -75,7 +76,12 @@ if($pageID == "720577281466461"){
 define('API_URL', 'https://graph.facebook.com/v2.11/me/messages?access_token='.BOT_TOKEN);
 wfile("BOTTOKEN: ".(BOT_TOKEN));
 if (isset($update['entry'][0]['messaging'][0])) {
-  processMessage($update['entry'][0]['messaging'][0]);
+
+	$senderID = $update['entry'][0]['messaging'][0]['sender']['id'];
+	//$pageID
+	if(getUserLocked($pageID, $senderID) != "no"){
+  	processMessage($update['entry'][0]['messaging'][0]);
+	}
 }
 
 

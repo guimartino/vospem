@@ -1,5 +1,4 @@
 <?php
-
 include("../../include/data.php");
 $start = date('Y-m-d H:i:s');
 checkLogin();
