@@ -51,12 +51,12 @@ checkLogin();
     var user_id = divName.split("_")[1];
     if(div.className == "yes"){
       div.className = "no";
-      $.get("../../actions.php?action=LockUnlockUser&value=0&user_id="+user_id+"&page_id=<?=$page_id?>", function(data, status){
+      $.get("../../include/actions.php?action=LockUnlockUser&value=0&user_id="+user_id+"&page_id=<?=$page_id?>", function(data, status){
         alert("Usuario bloqueado com sucesso");
       });
     }else{
       div.className = "yes";
-      $.get("../../actions.php?action=LockUnlockUser&value=1&user_id="+user_id+"&page_id=<?=$page_id?>", function(data, status){
+      $.get("../../include/actions.php?action=LockUnlockUser&value=1&user_id="+user_id+"&page_id=<?=$page_id?>", function(data, status){
         alert("Usuario desbloqueado");
       });
     }
