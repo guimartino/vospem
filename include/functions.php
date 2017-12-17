@@ -117,10 +117,10 @@
       $stmt->bindParam(3, $value);
     }else{
       $stmt = $con->prepare("UPDATE locked_users SET is_blocked = ? WHERE id_user = ? AND id_page ? ");
-      print_r($stmt);
       $stmt->bindParam(1, $value);
       $stmt->bindParam(2, $user_id);
       $stmt->bindParam(3, $page_id);
+      print_r($stmt);
     }
     print_r($stmt->execute());
   }
