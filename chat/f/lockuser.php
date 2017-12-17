@@ -1,15 +1,15 @@
 <?php
-session_start();
+
 include("../../include/data.php");
 $start = date('Y-m-d H:i:s');
 checkLogin();
   if(isset($_POST['page_id'])){
-    $_SESSION['lockuser_page_id'] = $_POST['page_id'];
-    $_SESSION['lockuser_page_token'] = $_POST['page_token'];
+    $page_id = $_POST['page_id'];
+    $page_token = $_POST['page_token'];
+  }else{
+    header("Location: pages.php");
   }
 
-    $page_id = $_SESSION['lockuser_page_id'];
-    $page_token = $_SESSION['lockuser_page_token'];
 
 /* PHP SDK v5.0.0 */
 /* make the API call */
