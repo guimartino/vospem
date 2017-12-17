@@ -20,7 +20,7 @@ checkLogin();
       $user_image = getUserImage($user_id);
       ?>
         <div style="" id="div_<?=$user_id;?>" onClick="changeclass('div_<?=$user_id?>')">
-          <img src="<?=$user_image?>" style="" class="no">
+          <img src="<?=$user_image?>" style="" class="no" style="width:80px;">
         </div>
       <?php
   }
@@ -48,7 +48,7 @@ checkLogin();
 <style>
   .yes{
     border:2px solid #007001; background:#60c961; width:50%; height: 100px; margin-bottom: 10px; border-radius:5px;
-    width:80px;
+    
   }
 
   .no{
