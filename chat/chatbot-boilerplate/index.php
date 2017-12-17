@@ -89,8 +89,8 @@ if (isset($update['entry'][0]['messaging'][0])) {
 
 	$url = "https://graph.facebook.com/v2.11/$senderID?fields=first_name,last_name,profile_pic&access_token=" . BOT_TOKEN;
 	wfile("URL API: ".($url));
-	$userInfo = json_decode(file_get_contents($url));
-
+	$userInfo = (file_get_contents($url));
+	wfile("JSON: ".($userInfo));
 	$results = print_r($userInfo, true);
 	wfile("User information: ".($userInfo));
 	$user_id = "";
