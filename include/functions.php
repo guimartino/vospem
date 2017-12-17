@@ -88,9 +88,9 @@
       return $result;
   }
 
-  function getUsersMessagePage($page_id, $page_token){
+  function getUsersMessagePage($fb, $page_id, $page_token){
 
-    global $fb;
+    //global $fb;
     try {
       // Returns a `Facebook\FacebookResponse` object
       //ID_CONVERSA/?fields=can_reply,former_participants,id,is_subscribed,link,message_count,participants,name,senders,subject
