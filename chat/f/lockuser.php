@@ -8,5 +8,5 @@ checkLogin();
   $users = getUsersMessagePage($fb, $_POST['page_id'], $_POST['page_token']);
 
   echo "<br><br>";
-}
+
 /* handle the result */
