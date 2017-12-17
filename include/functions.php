@@ -121,7 +121,7 @@
       $stmt->bindParam(2, $user_id);
       $stmt->bindParam(3, $page_id);
     }
-    $stmt->execute();
+    print_r($stmt->execute());
   }
   function getUserLocked($page_id, $user_id){
     $con = con();
