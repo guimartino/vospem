@@ -69,6 +69,8 @@ if($pageID == "720577281466461"){
 }elseif($pageID == "530951440254946"){
 	define('BOT_TOKEN', 'EAAR9nHZBpogcBAMghZBAQ2sIqVGYJITZCSUvaXb7RCwawDhQZBnLyiKUNS1C9IP6TE6PbWMbS0PJ831EdW89bAbW7yjVUq1bs9lngfFkga60PzJCr04Nm4qEeqR6ZAlLb1WpohevhnceZATuIKdUIZBJ7ZAJZCX9ZBtFZAvq6EZAW1wKgtCBYMZCopzNw');
 	//
+}elseif($pageID == "523235258054632"){
+	define('BOT_TOKEN', 'EAAR9nHZBpogcBAO8YPvKkh1J8oeBgRbmDZAxeIoU9QdN7PzWanv5SrHIlVkZA5XZC5B4WtCvhsebzCy3wf4DWhZCMFRZCFPgWqYkbjUMm0y3V7niLB24hzJvGdVb5eokhbMH1EKxtP2jkdRgXAm8zMG9iMe03HvHroUmgchPHsOVj8OIljnpsK');
 }
 define('API_URL', 'https://graph.facebook.com/v2.11/me/messages?access_token='.BOT_TOKEN);
 wfile("BOTTOKEN: ".(BOT_TOKEN));
