@@ -33,22 +33,23 @@ foreach ($array as $key => $value) {
     if($p['id']!=$_POST['page_id']){
       echo "Nome: ".$p['name']."<br>"."Id: ".$p['id'];
     }
-    // try {
-    //   $response = $fb->get(
-    //     '/'.$p['id'].'?fields=name,age_range,ids_for_pages',
-    //     ''.$_POST['page_token']
-    //   );
-    // } catch(Facebook\Exceptions\FacebookResponseException $e) {
-    //   echo 'Graph returned an error: ' . $e->getMessage();
-    //   //exit;
-    // } catch(Facebook\Exceptions\FacebookSDKException $e) {
-    //   echo 'Facebook SDK returned an error: ' . $e->getMessage();
-    //   //exit;
-    // }
-    //
-    // $graphEdge = $response->getGraphEdge();
-    // $array = $graphEdge->asArray();
-    // print_r($array);
+    $appsecret_proof= hash_hmac('sha256', $_POST['page_token'], 'c1642f39152539b59460933e65c5f0d0');
+    try {
+      $response = $fb->get(
+        '/'.$p['id'].'?fields=name,age_range,ids_for_pages&appsecret_proof='.$appsecret_proof,
+        ''.$_POST['page_token']
+      );
+    } catch(Facebook\Exceptions\FacebookResponseException $e) {
+      echo 'Graph returned an error: ' . $e->getMessage();
+      //exit;
+    } catch(Facebook\Exceptions\FacebookSDKException $e) {
+      echo 'Facebook SDK returned an error: ' . $e->getMessage();
+      //exit;
+    }
+
+    $graphEdge = $response->getGraphEdge();
+    $array = $graphEdge->asArray();
+    print_r($array);
 
 
   }
