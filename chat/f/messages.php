@@ -48,8 +48,8 @@ foreach ($array as $key => $value) {
     }
 
     $graphEdge = $response->getGraphEdge();
-    $array = $graphEdge->asArray();
-    print_r($array);
+    $array2 = $graphEdge->asArray();
+    print_r($array2);
 
 
   }
