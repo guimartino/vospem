@@ -5,12 +5,12 @@ checkLogin();
   if(isset($_SESSION['lockuser_page_id']) && $_SESSION['lockuser_page_id'] != $_POST['page_id']){
     $_SESSION['lockuser_page_id'] = $_POST['page_id'];
   }elseif(!isset($_SESSION['lockuser_page_id'])){
-    $_SESSION['lockuser_page_id'] != $_POST['page_id'];
+    $_SESSION['lockuser_page_id'] = $_POST['page_id'];
   }
  if(isset($_SESSION['lockuser_page_token']) && $_SESSION['lockuser_page_token'] != $_POST['page_token']){
     $_SESSION['lockuser_page_token'] = $_POST['page_token'];
   }elseif(!isset($_SESSION['lockuser_page_token'])){
-    $_SESSION['lockuser_page_token'] != $_POST['page_token'];
+    $_SESSION['lockuser_page_token'] = $_POST['page_token'];
   }
 
     $page_id = $_SESSION['lockuser_page_id'];
@@ -22,10 +22,10 @@ checkLogin();
   print_r($users);
   //graph.facebook.com/1428386897275804/picture?type=large
   foreach ($users as $user_id => $user_name) {
-      $user_imagem = getUserImage($user_id);
+      $user_image = getUserImage($user_id);
       ?>
         <div style="border:2px solid #007001; background:#60c961; width:50%; height: 100px; margin-bottom: 10px; border-radius:5px;">
-
+          <img src="<?=$user_image?>">
         </div>
       <?php
   }
