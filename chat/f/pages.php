@@ -22,7 +22,7 @@ try {
     $page_id = $value['id'];
     echo 'Nome da pagina: ' . $page_name . '<br>';
     echo 'Token: ' . $page_token. '<br>';
-    $appsecret_proof= hash_hmac('sha256', 'EAAR9nHZBpogcBAMsIhTdAvEcgSHZBp396gJ6lhjBsgDDGCJw6t22N8B1woSrkxG77uwRYhomgIgcF3GoOvPnjdvHZABJRqUsZAR26hkKQRa0R0TH43bXfLMqUBI6s61ZCKMMin9jhf2kdTzwLxhIZAEWesJ406JOwmn3j8g4zaSgZDZD', 'c1642f39152539b59460933e65c5f0d0');
+    $appsecret_proof= hash_hmac('sha256', $page_token, 'c1642f39152539b59460933e65c5f0d0');
     echo $appsecret_proof. '<br>';
     $fid = $value['id'];
 
