@@ -88,9 +88,6 @@ if (isset($update['entry'][0]['messaging'][0])) {
 	}
 }
 
-
-
-
 function wfile($text){
 	if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 		$ip = $_SERVER['HTTP_CLIENT_IP'];
