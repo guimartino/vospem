@@ -53,7 +53,7 @@
       }
     }
     return $r;
-  } 
+  }
 
   function getPageImage($page_id, $fb_token){
     $image = "https://graph.facebook.com/$page_id/picture?type=large&access_token=".$fb_token;
@@ -91,6 +91,20 @@
       curl_close($ch);
 
       return $result;
+  }
+
+  function getUserBlocked($page_id, $user_id){
+    $con = con();
+    $rs = $con->query("SELECT * FROM locked_users WHERE id_user = ? AND id_page = ? AND is_blocked = 1");
+    $rs->bindParam(1, $user_id);
+    $rs->bindParam(2, $page_id);
+    if($rs->execute()){
+      while($row = $rs->fetch(PDO::FETCH_OBJ)){
+        return "no";
+      }
+    }
+
+    return "yes";
   }
 
   function getUsersMessagePage($fb, $page_id, $page_token){

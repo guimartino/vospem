@@ -18,8 +18,15 @@ checkLogin();
   //graph.facebook.com/1428386897275804/picture?type=large
   foreach ($users as $user_id => $user_name) {
       $user_image = getUserImage($user_id);
+      $class = "yes";
+      $user_blocked = getUserBlocked($page_id, $user_id);
+
+
+
+
+
       ?>
-        <div style="" id="div_<?=$user_id;?>" onClick="changeclass('div_<?=$user_id?>')" class="yes">
+        <div style="" id="div_<?=$user_id;?>" onClick="changeclass('div_<?=$user_id?>')" class="<?=$user_blocked;?>">
           <table>
             <tr>
               <td>
@@ -58,17 +65,20 @@ checkLogin();
   .yes{
     border:2px solid #007001; background:#60c961; min-height: 100px; margin-bottom: 10px; border-radius:5px;
     padding:15px;
-
+    width: 50%;
   }
   .yes span{
       color: #007001;
+      font-weight: bolder;
     }
 
   .no{
     color: #7f0000;
+    font-weight: bolder;
   }
   .no{
     border:2px solid #7f0000; background:#e06b6b; min-height: 100px; margin-bottom: 10px; border-radius:5px;
     padding:15px;
+    width: 50%;
   }
 </style>
