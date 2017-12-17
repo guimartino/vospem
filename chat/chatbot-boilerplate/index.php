@@ -96,7 +96,7 @@ if (isset($update['entry'][0]['messaging'][0])) {
 	//wfile("User information: ".($results));
 	$user_id = $results['id'];
 	wfile("User ID: " . $user_id);
-	$appsecret_proof= hash_hmac('sha256', BOT_TOKEN, 'c1642f39152539b59460933e65c5f0d0');
+	$appsecret_proof= hash_hmac('sha256', $_SESSION['fb_access_token'], 'c1642f39152539b59460933e65c5f0d0');
 	wfile('Secret proof: '. $appsecret_proof);
 	$blocked = getUserLocked($pageID, $user_id);
 	wfile("Send message: ".($send));
