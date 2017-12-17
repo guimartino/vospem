@@ -46,7 +46,7 @@ checkLogin();
 
     var div = document.getElementById(divName);
 
-    if(div.className == "yes"){
+    if(div.className == "yes"){ 
       div.className = "no";
     }else{
       div.className = "yes";
@@ -57,7 +57,7 @@ checkLogin();
 <style>
   .yes{
     border:2px solid #007001; background:#60c961; height: 100px; margin-bottom: 10px; border-radius:5px;
-    padding:150px;
+    padding:15px;
 
   }
   .yes span{
