@@ -192,9 +192,8 @@
     $con = ($con == '') ? con() : $con;
 
 
-    $rs = $con->prepare("SELECT * FROM user_chat WHERE id_user = ? AND id_page = ? limit 1");
-    $rs->bindParam(1, $id_user);
-    $rs->bindParam(2, $id_page);
+    $rs = $con->prepare("SELECT * FROM pages WHERE id_page = ? limit 1");
+    $rs->bindParam(1, $id_page);
     $insert = true;
     if($rs->execute()){
       while($row = $rs->fetch(PDO::FETCH_OBJ)){
