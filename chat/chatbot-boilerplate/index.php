@@ -85,7 +85,7 @@ if (isset($update['entry'][0]['messaging'][0])) {
 
 	$senderID = $update['entry'][0]['messaging'][0]['sender']['id'];
 
-	$blocked = getUserLocked($pageID, $user_id);
+	$blocked = getUserLocked($pageID, $senderID);
 	wfile("Send message: ".($blocked));
 	if($blocked == "yes"){
   	processMessage($update['entry'][0]['messaging'][0]);
