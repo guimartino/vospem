@@ -151,7 +151,7 @@
       }
     }
     if($insert){
-      $stmt = $con->prepare("INSERT INTO locked_users(id_user, id_page) VALUES(?, ?)");
+      $stmt = $con->prepare("INSERT INTO user_chat(id_user, id_page) VALUES(?, ?)");
       $stmt->bindParam(1, $id_user);
       $stmt->bindParam(2, $id_page);
       $stmt->execute();
