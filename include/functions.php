@@ -159,7 +159,7 @@
   }
   function findAnswer($text){
     $con = ($con == '') ? con() : $con;
-    $sql = "SELECT * FROM answer_bot WHERE question = ?";
+    $sql = "SELECT * FROM answer_bot WHERE question like ?";
     $stmt = $con->prepare( $sql );
     $text = "%|".$text."|%";
     $stmt->bindParam(1, $text);
