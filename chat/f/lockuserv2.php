@@ -21,7 +21,7 @@ checkLogin();
       $user_data = getDataFromPSID($user_id, $page_token);
 
       //print_r($user_data);
-      $user_name = $user_data['first_name'] . $user_data['last_name'];
+      $user_name = $user_data['first_name'] . ' ' . $user_data['last_name'];
       $user_image = $user_data['profile_pic'];
       echo "<br>";
 
