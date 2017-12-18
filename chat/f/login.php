@@ -7,6 +7,6 @@ $loginUrl = $helper->getLoginUrl($domain . '/chat/f/fb-callback.php', $permissio
 echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
 
 
-echo filtro($_POST['vc gosta disso aqui? eu tb gosto!']);
+echo filtro('vc gosta disso aqui? eu tb gosto!');
 
 ?>
