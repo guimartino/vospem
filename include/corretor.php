@@ -60,6 +60,8 @@ function filtro($texto){
 	$texto=str_replace("
 ","[:p:]",$texto);
 
+	//Expandir palavras abreviadas
+	$texto=str_replace($array_abreviado,$array_abr_certo,$texto);
 	//acerta maiúscula e minúscula e inicia as sentenças com a primeira letra maiúscula
 	$array=explode(" ",$texto);
 	$novo_texto="";
@@ -150,8 +152,6 @@ function filtro($texto){
 	$texto=$novo_texto;
 
 
-	//Expandir palavras abreviadas
-	$texto=str_replace($array_abreviado,$array_abr_certo,$texto);
 
   restore_error_handler();
 	return $texto;
