@@ -140,7 +140,7 @@ function filtro($texto){
 		$ultimo_caracter=substr($paragrafo,-1);
 
 		if ($ultimo_caracter!='.' && $ultimo_caracter!='!' && $ultimo_caracter!='?' && $ultimo_caracter!=':' && $ultimo_caracter!=';')
-			$paragrafo.=".";
+			$paragrafo.="";
 
 		if ($i!=$tam_array)
 			$novo_texto.=$paragrafo."";
