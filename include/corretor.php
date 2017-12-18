@@ -44,8 +44,8 @@ function filtro($texto){
 	//Variáveis
 	$pontuacoes=array(",",".","!","?",";");
 
-	$array_abreviado=array("vc","tb","jesus","naum","ñ","pq");
-	$array_abr_certo=array("você","também","Jesus","não","não","porque");
+	$array_abreviado=array("Vc","vc","tb","jesus","naum","ñ","pq");
+	$array_abr_certo=array("Você","você","também","Jesus","não","não","porque");
 
 	//Prepara paragrafo
 	$texto=str_replace("
