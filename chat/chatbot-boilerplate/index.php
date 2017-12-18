@@ -84,20 +84,7 @@ wfile("BOTTOKEN: ".(BOT_TOKEN));
 if (isset($update['entry'][0]['messaging'][0])) {
 
 	$senderID = $update['entry'][0]['messaging'][0]['sender']['id'];
-	//$pageID
-	wfile("SENDER ID: ".($senderID));
 
-	$url = "https://graph.facebook.com/v2.11/$senderID?fields=first_name,last_name,profile_pic&access_token=" . BOT_TOKEN;
-	//wfile("URL API: ".($url));
-	$userInfo = (file_get_contents($url));
-	//wfile("JSON: ".($userInfo));
-
-	$results = json_decode($userInfo, true);
-	//wfile("User information: ".($results));
-	$user_id = $results['id'];
-	wfile("User ID: " . $user_id);
-	$appsecret_proof= hash_hmac('sha256', '0998fcafe9ae322c1aaa6896398f77a6', 'c1642f39152539b59460933e65c5f0d0');
-	wfile('Secret proof: '. $appsecret_proof);
 	$blocked = getUserLocked($pageID, $user_id);
 	wfile("Send message: ".($send));
 	if($send == "yes"){
