@@ -84,7 +84,7 @@ define('API_URL', 'https://graph.facebook.com/v2.11/me/messages?access_token='.B
 if (isset($update['entry'][0]['messaging'][0])) {
 
 	$senderID = $update['entry'][0]['messaging'][0]['sender']['id'];
-	insertUserChat($senderID, $pageID);
+	if($senderID!= $pageID) insertUserChat($senderID, $pageID);
 	$blocked = getUserLocked($pageID, $senderID);
 	wfile("Send message: ".($blocked));
 	if($blocked == "yes"){
