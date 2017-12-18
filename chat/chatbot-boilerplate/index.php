@@ -71,7 +71,7 @@ $pageID = $update['entry'][0]['id'];
 $page_id = $pageID;
 wfile("Page ID: ".($page_id));
 define('BOT_TOKEN', getPageToken($page_id));
-define('API_URL', 'https://graph.facebook.com/'$api_version'/me/messages?access_token='.BOT_TOKEN);
+define('API_URL', 'https://graph.facebook.com/'.$api_version.'/me/messages?access_token='.BOT_TOKEN);
 //wfile("BOTTOKEN: ".(BOT_TOKEN));
 
 if (isset($update['entry'][0]['messaging'][0])) {
