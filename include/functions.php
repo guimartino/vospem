@@ -139,26 +139,43 @@
 
     return "yes";
   }
-
-
-    function getUsersChatPage($page_id, $con = ''){
-      $con = ($con == '') ? con() : $con;
-      $sql = "SELECT * FROM user_chat WHERE id_page = ?";
-      $stmt = $con->prepare( $sql );
-      $stmt->bindParam(1, $page_id);
-      $stmt->execute();
-      $users = array();
-      while($row = $stmt->fetch( PDO::FETCH_ASSOC )) {
-        //print_r($row);
-          $users[] = $row['id_user'];
+  function insertUserChat($id_user, $id_page){
+    $con = con();
+    $rs = $con->prepare("SELECT * FROM user_chat WHERE id_user = ? AND id_page = ? limit 1");
+    $rs->bindParam(1, $id_user);
+    $rs->bindParam(2, $id_page);
+    $insert = true;
+    if($rs->execute()){
+      while($row = $rs->fetch(PDO::FETCH_OBJ)){
+        $insert = false;
       }
-      return $users;
     }
+    if($insert){
+      $stmt = $con->prepare("INSERT INTO locked_users(id_user, id_page) VALUES(?, ?)");
+      $stmt->bindParam(1, $id_user);
+      $stmt->bindParam(2, $id_page);
+      $stmt->execute();
+    }
+  }
 
-    function getDataFromPSID($user_id, $page_token){
-      $data = json_decode(file_get_contents("https://graph.facebook.com/$user_id?access_token=$page_token"), true);
-      return $data;
+  function getUsersChatPage($page_id, $con = ''){
+    $con = ($con == '') ? con() : $con;
+    $sql = "SELECT * FROM user_chat WHERE id_page = ?";
+    $stmt = $con->prepare( $sql );
+    $stmt->bindParam(1, $page_id);
+    $stmt->execute();
+    $users = array();
+    while($row = $stmt->fetch( PDO::FETCH_ASSOC )) {
+      //print_r($row);
+        $users[] = $row['id_user'];
     }
+    return $users;
+  }
+
+  function getDataFromPSID($user_id, $page_token){
+    $data = json_decode(file_get_contents("https://graph.facebook.com/$user_id?access_token=$page_token"), true);
+    return $data;
+  }
 
   function getUsersMessagePage($fb, $page_id, $page_token){
 
