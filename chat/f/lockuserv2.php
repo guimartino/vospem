@@ -13,6 +13,7 @@ checkLogin();
 /* PHP SDK v5.0.0 */
 /* make the API call */
   $users = getUsersChatPage($page_id, $con);
+  echo $page_id;
   print_r($users);
   //print_r($users);
   //graph.facebook.com/1428386897275804/picture?type=large
