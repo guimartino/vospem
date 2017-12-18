@@ -149,14 +149,14 @@
       $stmt->execute();
       $users = array();
       while($row = $stmt->fetch( PDO::FETCH_ASSOC )) {
-          $users[] = $row['user_id'];
+          $users[] = $row['id_user'];
       }
       return $users;
     }
 
     function getDataFromPSID($user_id, $page_token){
       $data = json_decode(file_get_contents("https://graph.facebook.com/$user_id?access_token=$page_token"), true);
-      return $data;    
+      return $data;
     }
 
   function getUsersMessagePage($fb, $page_id, $page_token){
