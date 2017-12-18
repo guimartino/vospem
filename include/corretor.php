@@ -143,9 +143,7 @@ function filtro($texto){
 			$paragrafo.=".";
 
 		if ($i!=$tam_array)
-			$novo_texto.=$paragrafo."
-
-";
+			$novo_texto.=$paragrafo."";
 
 	}
 
