@@ -26,9 +26,14 @@ function processMessage($message) {
 	wfile("Texto recebido: " . $text);
   if (isset($text)) {
 		$answer = findAnswer($text);
-		$data = array('recipient' => array('id' => $sender), 'message' => array('text' => $answer[0]));
 		wfile("Resposta: " . $answer[1]);
-		sendMessage($data);
+		$answer = explode("{{NEW}}",$answer[0]);
+		foreach ($answer as $value) {
+			$data = array('recipient' => array('id' => $sender), 'message' => array('text' => $value));
+			sendMessage($data);
+		}
+
+
   }
 }
 function sendMessage($parameters) {
