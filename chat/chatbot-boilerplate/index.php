@@ -25,7 +25,7 @@ function processMessage($message) {
 
 	wfile("Texto recebido: " . $text);
   if (isset($text)) {
-		$answer = findAnswer(filtro($text));
+		$answer = findAnswer(filtro(trim($text)));
 		wfile("Resposta: " . $answer[1]);
 		$answer = explode("{{NEW}}",$answer[0]);
 		foreach ($answer as $value) {
