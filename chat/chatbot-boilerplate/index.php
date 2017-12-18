@@ -68,22 +68,16 @@ $update = json_decode($update_response, true);
 
 
 $pageID = $update['entry'][0]['id'];
-wfile("Page ID: ".($pageID));
-if($pageID == "720577281466461"){
-	define('BOT_TOKEN', 'EAAR9nHZBpogcBAPZA9ly37EHMJ6UxrnNc9xwUY5mkyWm4QdncxSlkIz4wwih4ShShOZCK3A5TM5ZC541dB2Rz39x0tFi9AVpJcnPEDjj0Xkm8Su5Ewqqmcvw4tjM7Dv0uWTnOoqGjFOZCXvDxNuvVVM5fCD3nzc5Rr6bkHm68ZBvCaQtlwqZAID');
-}elseif($pageID == "530951440254946"){
-	define('BOT_TOKEN', 'EAAR9nHZBpogcBAMghZBAQ2sIqVGYJITZCSUvaXb7RCwawDhQZBnLyiKUNS1C9IP6TE6PbWMbS0PJ831EdW89bAbW7yjVUq1bs9lngfFkga60PzJCr04Nm4qEeqR6ZAlLb1WpohevhnceZATuIKdUIZBJ7ZAJZCX9ZBtFZAvq6EZAW1wKgtCBYMZCopzNw');
-	//
-}elseif($pageID == "523235258054632"){
-	define('BOT_TOKEN', 'EAAR9nHZBpogcBAO8YPvKkh1J8oeBgRbmDZAxeIoU9QdN7PzWanv5SrHIlVkZA5XZC5B4WtCvhsebzCy3wf4DWhZCMFRZCFPgWqYkbjUMm0y3V7niLB24hzJvGdVb5eokhbMH1EKxtP2jkdRgXAm8zMG9iMe03HvHroUmgchPHsOVj8OIljnpsK');
-}
+$page_id = $pageID;
+wfile("Page ID: ".($page_id));
+define('BOT_TOKEN', getPageToken($page_id));
 define('API_URL', 'https://graph.facebook.com/v2.11/me/messages?access_token='.BOT_TOKEN);
 //wfile("BOTTOKEN: ".(BOT_TOKEN));
 
 if (isset($update['entry'][0]['messaging'][0])) {
 
 	$senderID = $update['entry'][0]['messaging'][0]['sender']['id'];
-	if($senderID != $pageID) insertUserChat($senderID, $pageID);
+	if($senderID != $pageID) insertUserChat($senderID, $page_id);
 	$blocked = getUserLocked($pageID, $senderID);
 	wfile("Send message: ".($blocked));
 	if($blocked == "yes"){
