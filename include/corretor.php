@@ -40,7 +40,7 @@ return false;
 /////////////////////////////////
 
 function filtro($texto){
-
+  set_error_handler("warning_handler", E_NOTICE);
 	//Variáveis
 	$pontuacoes=array(",",".","!","?",";");
 
@@ -144,9 +144,13 @@ function filtro($texto){
 	//Expandir palavras abreviadas
 	$texto=str_replace($array_abreviado,$array_abr_certo,$texto);
 
-
+  restore_error_handler();
 	return $texto;
 
+}
+
+function warning_handler($errno, $errstr) {
+// do something
 }
 
 ?>
