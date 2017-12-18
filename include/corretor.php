@@ -44,8 +44,17 @@ function filtro($texto){
 	//Variáveis
 	$pontuacoes=array(",",".","!","?",";");
 
-	$array_abreviado=array("Vc","vc","tb","jesus","naum","ñ","pq");
-	$array_abr_certo=array("Você","você","também","Jesus","não","não","porque");
+	//$array_abreviado=array("Vc","vc","tb","jesus","naum","ñ","pq");
+	//$array_abr_certo=array("Você","você","também","Jesus","não","não","porque");
+  $array_abreviado = array();
+  $array_abr_certo = array();
+  $con = con();
+  $stmt = $con->prepare("SELECT * FROM corrector");
+  $stmt->execute();
+  while($row = $stmt->fetch( PDO::FETCH_ASSOC )) {
+      $array_abreviado[] = $row['word_from'];
+      $array_abr_certo[] = $row['word_to'];
+  }
 
 	//Prepara paragrafo
 	$texto=str_replace("
