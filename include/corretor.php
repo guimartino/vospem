@@ -26,7 +26,7 @@ if ($palavra=="") return false;
 if ($palavra=="[:p:]")  return false;
 if (strlen($palavra)<=1) return false;
 
-$palavra=ereg_replace("[^a-zA-Z0-9]", "", strtr($palavra, "áàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ ", "aaaaeeiooouucAAAAEEIOOOUUC_"));
+$palavra=preg_replace("[^a-zA-Z0-9]", "", strtr($palavra, "áàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ ", "aaaaeeiooouucAAAAEEIOOOUUC_"));
 
 if ($palavra == str_maiuscula($palavra))
 	return true;
