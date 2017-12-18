@@ -13,14 +13,16 @@ checkLogin();
 /* PHP SDK v5.0.0 */
 /* make the API call */
   $users = getUsersChatPage($page_id, $con);
-  
-  print_r($users);
+
+  //print_r($users);
   //print_r($users);
   //graph.facebook.com/1428386897275804/picture?type=large
   foreach ($users as $user_id) {
       $user_data = getDataFromPSID($user_id, $page_token);
 
-      print_r($user_data);
+      //print_r($user_data);
+      $user_name = $user_data['first_name'] . $user_data['last_name'];
+      $user_image = $user_data['profile_pic'];
       echo "<br>";
 
       $class = "yes";

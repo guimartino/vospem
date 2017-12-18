@@ -149,7 +149,7 @@
       $stmt->execute();
       $users = array();
       while($row = $stmt->fetch( PDO::FETCH_ASSOC )) {
-        print_r($row);
+        //print_r($row);
           $users[] = $row['id_user'];
       }
       return $users;
