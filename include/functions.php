@@ -177,7 +177,7 @@
     $stmt->bindParam(1, $id_page);
     $stmt->execute();
     while($row = $stmt->fetch( PDO::FETCH_ASSOC )) {
-      return $row['page_token']
+      return $row['page_token'];
     }
     return null;
   }
