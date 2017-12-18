@@ -32,8 +32,6 @@ function processMessage($message) {
 			$data = array('recipient' => array('id' => $sender), 'message' => array('text' => $value));
 			sendMessage($data);
 		}
-
-
   }
 }
 function sendMessage($parameters) {
