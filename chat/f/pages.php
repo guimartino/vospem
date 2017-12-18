@@ -41,7 +41,7 @@ try {
       <input type="hidden" name="page_token" value="<?=$page_token?>">
       <input type="submit" value="Mostrar estatisticas" class="btn btn-primary" style="padding:10px 20px 10px 20px">
     </form>
-    <form method="POST" action="lockuser.php">
+    <form method="POST" action="lockuserv2.php">
       <input type="hidden" name="page_id" value="<?=$page_id?>">
       <input type="hidden" name="page_token" value="<?=$page_token?>">
       <input type="submit" value="Bloquear usuarios" class="btn btn-primary" style="padding:10px 20px 10px 20px">

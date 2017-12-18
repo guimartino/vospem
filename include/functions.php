@@ -126,8 +126,8 @@
     }
     print_r($stmt->execute());
   }
-  function getUserLocked($page_id, $user_id){
-    $con = con();
+  function getUserLocked($page_id, $user_id, $con = ''){
+    $con = ($con == '') ? con() : $con;
     $sql = "SELECT * FROM locked_users WHERE id_user = ? AND id_page = ? AND is_blocked = 1";
     $stmt = $con->prepare( $sql );
     $stmt->bindParam(1, $user_id);
@@ -139,6 +139,25 @@
 
     return "yes";
   }
+
+
+    function getUsersChatPage($page_id, $con = ''){
+      $con = ($con == '') ? con() : $con;
+      $sql = "SELECT * FROM user_chat WHERE id_page = ?";
+      $stmt = $con->prepare( $sql );
+      $stmt->bindParam(1, $page_id);
+      $stmt->execute();
+      $users = array();
+      while($row = $stmt->fetch( PDO::FETCH_ASSOC )) {
+          $users[] = $row['user_id'];
+      }
+      return $users;
+    }
+
+    function getDataFromPSID($user_id, $page_token){
+      $data = json_decode(file_get_contents("https://graph.facebook.com/$user_id?access_token=$page_token"), true);
+      return $data;    
+    }
 
   function getUsersMessagePage($fb, $page_id, $page_token){
 

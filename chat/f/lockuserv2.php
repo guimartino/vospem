@@ -8,17 +8,21 @@ checkLogin();
   }else{
     header("Location: pages.php");
   }
-
+  $con = con();
 
 /* PHP SDK v5.0.0 */
 /* make the API call */
-  $users = getUsersMessagePage($fb, $page_id, $page_token);
+  $users = getUsersChatPage($page_id, $con);
   //print_r($users);
   //graph.facebook.com/1428386897275804/picture?type=large
-  foreach ($users as $user_id => $user_name) {
-      $user_image = getUserImage($user_id);
+  foreach ($users as $user_id) {
+      $user_data = getDataFromPSID($user_id, $page_token);
+
+      print_r($user_data);
+      echo "<br>";
+
       $class = "yes";
-      $user_blocked = getUserLocked($page_id, $user_id);
+      $user_blocked = getUserLocked($page_id, $user_id, $con);
 
       ?>
         <div style="" id="div_<?=$user_id;?>" onClick="changeclass('div_<?=$user_id?>')" class="<?=$user_blocked;?>">
