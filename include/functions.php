@@ -165,9 +165,9 @@
     $stmt->bindParam(1, $text);
     $stmt->execute();
     while($row = $stmt->fetch( PDO::FETCH_ASSOC )) {
-      return $row['answer'];
+      return array($row['answer'], $text);
     }
-    return null;
+    return array(' ', $text);
   }
   function getUsersChatPage($page_id, $con = ''){
     $con = ($con == '') ? con() : $con;

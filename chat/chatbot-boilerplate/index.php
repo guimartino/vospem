@@ -26,8 +26,8 @@ function processMessage($message) {
 	wfile("Texto recebido: " . $text);
   if (isset($text)) {
 		$answer = findAnswer($text);
-		$data = array('recipient' => array('id' => $sender), 'message' => array('text' => $answer));
-		
+		$data = array('recipient' => array('id' => $sender), 'message' => array('text' => $answer[0]));
+		wfile("Resposta: " . $answer[1]);
 		sendMessage($data);
   }
 }
