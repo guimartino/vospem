@@ -6,7 +6,7 @@
   $token = $_POST['page_token'];
   $page_name = $_POST['page_name'];
   $t = $_POST['tipo'];
-
+  $data = array();
   $data['id_page'] = $id;
   $data['page_name'] = $page_name;
   $data['page_token'] = $token;
