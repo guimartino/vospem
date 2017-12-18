@@ -40,7 +40,7 @@ return false;
 /////////////////////////////////
 
 function filtro($texto){
-  set_error_handler("warning_handler", E_NOTICE);
+  set_error_handler("notice_handler", E_NOTICE);
 	//Variáveis
 	$pontuacoes=array(",",".","!","?",";");
 
@@ -149,8 +149,5 @@ function filtro($texto){
 
 }
 
-function warning_handler($errno, $errstr) {
-// do something
-}
 
 ?>

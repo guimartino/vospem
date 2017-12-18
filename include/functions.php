@@ -175,3 +175,7 @@
   return $users;
 
 }
+
+function notice_handler($errno, $errstr) {
+// do something
+}
