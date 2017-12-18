@@ -79,15 +79,15 @@ if($pageID == "720577281466461"){
 	define('BOT_TOKEN', 'EAAR9nHZBpogcBAO8YPvKkh1J8oeBgRbmDZAxeIoU9QdN7PzWanv5SrHIlVkZA5XZC5B4WtCvhsebzCy3wf4DWhZCMFRZCFPgWqYkbjUMm0y3V7niLB24hzJvGdVb5eokhbMH1EKxtP2jkdRgXAm8zMG9iMe03HvHroUmgchPHsOVj8OIljnpsK');
 }
 define('API_URL', 'https://graph.facebook.com/v2.11/me/messages?access_token='.BOT_TOKEN);
-wfile("BOTTOKEN: ".(BOT_TOKEN));
+//wfile("BOTTOKEN: ".(BOT_TOKEN));
 
 if (isset($update['entry'][0]['messaging'][0])) {
 
 	$senderID = $update['entry'][0]['messaging'][0]['sender']['id'];
 
 	$blocked = getUserLocked($pageID, $user_id);
-	wfile("Send message: ".($send));
-	if($send == "yes"){
+	wfile("Send message: ".($blocked));
+	if($blocked == "yes"){
   	processMessage($update['entry'][0]['messaging'][0]);
 	}else{
 		wfile("Not supposed to send the message!");
