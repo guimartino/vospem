@@ -157,7 +157,18 @@
       $stmt->execute();
     }
   }
-
+  function findAnswer($text){
+    $con = ($con == '') ? con() : $con;
+    $sql = "SELECT * FROM answer_bot WHERE question = ?";
+    $stmt = $con->prepare( $sql );
+    $text = "%|".$text."|%";
+    $stmt->bindParam(1, $text);
+    $stmt->execute();
+    while($row = $stmt->fetch( PDO::FETCH_ASSOC )) {
+      return $row['answer'];
+    }
+    return null;
+  }
   function getUsersChatPage($page_id, $con = ''){
     $con = ($con == '') ? con() : $con;
     $sql = "SELECT * FROM user_chat WHERE id_page = ?";

@@ -25,11 +25,10 @@ function processMessage($message) {
 
 	wfile("Texto recebido: " . $text);
   if (isset($text)) {
-		if ($text == "Ola") {
-			sendMessage(array('recipient' => array('id' => $sender), 'message' => array('text' => 'Olá, tudo bem?')));
-		}else{
-			sendMessage(array('recipient' => array('id' => $sender), 'message' => array('text' => 'Comando "' . $text. '" nao encotrado')));
-		}
+		$answer = findAnswer($text);
+		$data = array('recipient' => array('id' => $sender), 'message' => array('text' => $answer));
+		
+		sendMessage($data);
   }
 }
 function sendMessage($parameters) {
@@ -84,7 +83,7 @@ define('API_URL', 'https://graph.facebook.com/v2.11/me/messages?access_token='.B
 if (isset($update['entry'][0]['messaging'][0])) {
 
 	$senderID = $update['entry'][0]['messaging'][0]['sender']['id'];
-	if($senderID != $pageID) insertUserChat($senderID, $pageID); 
+	if($senderID != $pageID) insertUserChat($senderID, $pageID);
 	$blocked = getUserLocked($pageID, $senderID);
 	wfile("Send message: ".($blocked));
 	if($blocked == "yes"){
