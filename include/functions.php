@@ -182,7 +182,7 @@
     return null;
   }
 
-  function insertPageDataBase($data){
+  function insertPageDataBase($data, $con = ''){
     $id_page = $data['id_page'];
     $page_name = $data['page_name'];
     $page_token = $data['page_token'];
