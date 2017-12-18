@@ -6,17 +6,20 @@
   $token = $_POST['page_token'];
   $page_name = $_POST['page_name'];
   $t = $_POST['tipo'];
+
+  $data['id_page'] = $id;
+  $data['page_name'] = $page_name;
+  $data['page_token'] = $token;
+  $data['id_user'] = 1;
+
   if($t == "remove"){
     $r = curl_del("https://graph.facebook.com/$id/subscribed_apps?access_token=$token");
+    $data['enabled'] = 0;
   }else{
     $r = httpPost("https://graph.facebook.com/$id/subscribed_apps?access_token=$token");
-    $data['id_page'] = $id;
-    $data['page_name'] = $page_name;
-    $data['page_token'] = $token;
-    $data['id_user'] = 1;
-
-    echo insertPageDataBase($data);
+    $data['enabled'] = 1;
   }
+  echo insertPageDataBase($data);
 
   //$r = fixJSON($r, "}", 'right', false);
   //$r = $r[0];

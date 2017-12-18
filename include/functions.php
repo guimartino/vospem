@@ -187,15 +187,37 @@
     $page_name = $data['page_name'];
     $page_token = $data['page_token'];
     $id_user = $data['id_user'];
+    $enabled = (isset($data['enabled'])) ? $data['enabled'] : 1;
 
     $con = ($con == '') ? con() : $con;
-    $sql = "INSERT INTO pages (id_page, page_name, page_token, id_user) VALUES (?, ?, ?, ?)";
-    $stmt = $con->prepare( $sql );
-    $stmt->bindParam(1, $id_page);
-    $stmt->bindParam(2, $page_name);
-    $stmt->bindParam(3, $page_token);
-    $stmt->bindParam(4, $id_user);
 
+
+    $rs = $con->prepare("SELECT * FROM user_chat WHERE id_user = ? AND id_page = ? limit 1");
+    $rs->bindParam(1, $id_user);
+    $rs->bindParam(2, $id_page);
+    $insert = true;
+    if($rs->execute()){
+      while($row = $rs->fetch(PDO::FETCH_OBJ)){
+        $insert = false;
+      }
+    }
+    if($insert){
+      $sql = "INSERT INTO pages (id_page, page_name, page_token, id_user) VALUES (?, ?, ?, ?)";
+      $stmt = $con->prepare( $sql );
+      $stmt->bindParam(1, $id_page);
+      $stmt->bindParam(2, $page_name);
+      $stmt->bindParam(3, $page_token);
+      $stmt->bindParam(4, $id_user);
+    }else{
+      $sql = "UPDATE pages SET id_page = ?, page_name = ?, page_token = ?, id_user = ?, enabled = ? WHERE id_page = ?";
+      $stmt = $con->prepare( $sql );
+      $stmt->bindParam(1, $id_page);
+      $stmt->bindParam(2, $page_name);
+      $stmt->bindParam(3, $page_token);
+      $stmt->bindParam(4, $id_user);
+      $stmt->bindParam(5, $enabled);
+      $stmt->bindParam(6, $id_page);
+    }
     return $stmt->execute();
 
 
