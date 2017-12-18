@@ -34,6 +34,7 @@ try {
       <input type="hidden" name="tipo" value="<?=$s[0]?>">
       <input type="hidden" name="page_id" value="<?=$page_id?>">
       <input type="hidden" name="page_token" value="<?=$page_token?>">
+      <input type="hidden" name="page_name" value="<?=$page_name?>">
       <input type="submit" value="<?=$s[1]?>" class="btn btn-<?=$s[2];?>" style="padding:10px 20px 10px 20px">
     </form>
     <form method="POST" action="messages.php">

@@ -169,6 +169,38 @@
     }
     return array(' ', $text);
   }
+
+  function getPagetoken($id_page){
+    $con = ($con == '') ? con() : $con;
+    $sql = "SELECT * FROM pages WHERE id_page like ?";
+    $stmt = $con->prepare( $sql );
+    $stmt->bindParam(1, $id_page);
+    $stmt->execute();
+    while($row = $stmt->fetch( PDO::FETCH_ASSOC )) {
+      return $row['page_token']
+    }
+    return null;
+  }
+
+  function insertPageDataBase($data){
+    $id_page = $data['id_page'];
+    $page_name = $data['page_name'];
+    $page_token = $data['page_token'];
+    $id_user = $data['id_user'];
+
+    $con = ($con == '') ? con() : $con;
+    $sql = "INSERT INTO pages (id_page, page_name, page_token, id_user) VALUES (?, ?, ?, ?)";
+    $stmt = $con->prepare( $sql );
+    $stmt->bindParam(1, $id_page);
+    $stmt->bindParam(2, $page_name);
+    $stmt->bindParam(3, $page_token);
+    $stmt->bindParam(4, $id_user);
+
+    return $stmt->execute();
+
+
+  }
+
   function getUsersChatPage($page_id, $con = ''){
     $con = ($con == '') ? con() : $con;
     $sql = "SELECT * FROM user_chat WHERE id_page = ?";
