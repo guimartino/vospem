@@ -12,7 +12,7 @@ checkLogin();
 
 /* PHP SDK v5.0.0 */
 /* make the API call */
-  $users = getUsersChatPage($page_id, $con);
+  $users = getUsersChatPage($page_id);
 
   //print_r($users);
   //print_r($users);
