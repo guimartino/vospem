@@ -1,3 +1,7 @@
 Tutorial:
 
 https://vwannabe.com/2016/05/26/how-to-use-github-and-atom/
+
+
+Auto deploy Docker:
+https://github.com/evoja/docker-Github-Gitlab-Auto-Deploy
