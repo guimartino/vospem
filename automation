@@ -1,0 +1,229 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import MySQLdb
+import urllib
+import simplejson
+import smtplib
+import time
+from time import gmtime, strftime
+import datetime
+import glob
+import os
+import base64
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+from email.mime.application import MIMEApplication
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+from selenium.common.exceptions import NoSuchElementException
+import urllib2
+import sys, os, tempfile, logging
+
+if sys.version_info >= (3,):
+    import urllib.request as urllib2
+    import urllib.parse as urlparse
+else:
+    import urllib2
+    import urlparse
+def DownloadDependences(url = 'http://autoescolaararipe.com.br/Download/chromedriver.exe', dest='C:\\driver\\'):
+    u = urllib2.urlopen(url)
+
+    scheme, netloc, path, query, fragment = urlparse.urlsplit(url)
+    filename = os.path.basename(path)
+    if not filename:
+        filename = 'downloaded.file'
+    if dest:
+        filename = os.path.join(dest, filename)
+
+    with open(filename, 'wb') as f:
+        meta = u.info()
+        meta_func = meta.getheaders if hasattr(meta, 'getheaders') else meta.get_all
+        meta_length = meta_func("Content-Length")
+        file_size = None
+        if meta_length:
+            file_size = int(meta_length[0])
+        print("Baixando dependencias")
+
+        file_size_dl = 0
+        block_sz = 8192
+        while True:
+            buffer = u.read(block_sz)
+            if not buffer:
+                break
+
+            file_size_dl += len(buffer)
+            f.write(buffer)
+
+            status = "{0:16}".format(file_size_dl)
+            if file_size:
+                status += "   [{0:6.2f}%]".format(file_size_dl * 100 / file_size)
+            status += chr(13)
+
+    return filename
+
+def DBConnection():
+	#connecting to db
+	host = 'ip'
+	user = 'usuario'
+	passwd = 'senha'
+	global db
+	print("Conectando-se ao banco de dados")
+	db = MySQLdb.connect(host=host, user=user, passwd=passwd)
+	print ("Conectado com sucesso")
+	db.select_db("servermi_painel")
+	return db.cursor()
+
+def GetParameter(param_name, company = 0):
+    #get the directory where the user's profile picture must be saved
+	company_str = ""
+	if company != 0:
+		company_str = " and company = " + str(company)
+	ssql = "select value from parameters where name = '"+str(param_name)+"'" + company_str
+	result = DBQuery(ssql)
+	for item in result:
+		return item[0]
+
+def GetPageItem(field, type, compay):
+	ssql = "select value from page_items where field = '"+str(field)+"' and type = " + str(type) + " and company = " + str(compay)
+	#print ssql
+	result = DBQuery(ssql)
+	for item in result:
+		return item[0]
+
+
+def DBQuery(sqlStr, operation = 'query'):
+    #querying in db
+    if operation == 'query':
+        result = cursor.execute(sqlStr)
+        return cursor.fetchall()
+    elif operation == 'execute':
+        try:
+            cursor.execute(sqlStr)
+            db.commit()
+        except:
+            Logger('executing query', sqlStr)
+
+def Logger(description, value):
+    strsql = "insert into log (description, value) values ('"+str(description)+"', '"+str(value)+"')"
+    DBQuery(strsql, 'execute')
+
+
+
+#INICIO CODIGO
+#desktop_file = os.path.expanduser("~/Desktop/myfile.txt")
+if not os.path.exists("C:\\driver\\"):
+	os.makedirs('C:\\driver\\')
+if not os.path.exists("C:\\driver\\chromedriver.exe"):
+	print("Arquivo nao encontrado")
+	DownloadDependences()
+def is_number(s):
+    try:
+        float(s) # for int, long and float
+    except ValueError:
+        try:
+            complex(s) # for complex
+        except ValueError:
+            return False
+    return True
+db = ""
+cursor = DBConnection()
+ssql = """
+		SELECT * FROM
+		accounts a
+		 join types b
+		 	on a.type = b.id_type
+		 join companies c
+			on c.id_company = b.company
+	 """
+
+accounts = DBQuery(ssql)
+for account in accounts:
+	try:
+		user = str(account[1])
+		installation_number = str(account[2])
+		options = webdriver.ChromeOptions()
+		folder_name = strftime("%Y%m%d_%H%M%S", gmtime())
+		folder_name = "Contrato_" + installation_number + "_" + strftime("%Y%m%d", gmtime())
+
+		download_folder = "C:\\PDF\\" + str(folder_name)
+		createPath(download_folder)
+		profile = {"plugins.plugins_list": [{"enabled": False,
+											 "name": "Chrome PDF Viewer"}],
+				   "download.default_directory": download_folder,
+				   "download.extensions_to_open": ""}
+		options.add_argument('--log-level=3')
+		options.add_experimental_option("prefs", profile)
+
+		driver = webdriver.Chrome('C:\\driver\\chromedriver.exe', chrome_options = options, service_args=["--verbose", "--log-path=C:\\driver\qc1.log", "--log-level=3"])
+		driver.set_window_position(5000, 5000)
+
+		driver.get(account[8]);
+		#find username field
+		username_field = driver.find_element_by_xpath(GetPageItem('user', account[3], account[7]))
+		#imput username
+		username_field.clear()
+		time.sleep(1)
+		username_field.send_keys(Keys.HOME)
+		time.sleep(1)
+		username_field.send_keys(Keys.HOME + user)
+		#installation_number
+		installation_number = driver.find_element_by_xpath(str(GetPageItem('installation_number', account[3], account[7])))
+		installation_number.send_keys(str(account[2]))
+		#submit form
+		driver.find_element_by_xpath(GetPageItem('submit_button', account[3], account[7])).click()
+		#click second copy button
+		waitUntilFound(GetPageItem('second_copy', account[3], account[7])).click()
+		#click last count
+		time.sleep(5)
+		#--
+		table_faturas = find_parcial(tables, 'tblFaturas', 'id')
+		table_faturas_tbody = table_faturas.find_elements_by_tag_name('tbody')
+		table_faturas_tr = table_faturas.find_elements_by_tag_name('tr')
+
+
+		#.find_elements_by_tag_name('tr')
+		for tr in table_faturas_tr:
+			td = tr.find_elements_by_tag_name('td')
+			td_content_1 = td[1].get_attribute('innerHTML')
+			if(is_number(td_content_1.replace(',','.'))):
+				print("Valor: R$" + td_content_1)
+				print("Abrindo fatura")
+				#mes referencia
+
+				td_reference_month = td[3].get_attribute('innerHTML').replace("/","-")
+
+				td_visualizar = td[4].find_element_by_tag_name('a')
+				td_visualizar.click()
+				#waitUntilFound('//*[@id="ctl00_ctl44_g_46cb3868_7cdc_45b9_ac27_9fb2476ff549_ctl00_tblFaturas"]/tbody/tr[2]/td[5]/a').click()
+				time.sleep(5)
+				#find iframe with the options
+				iframes = waitUntilFound('iframe', 2)
+				driver.switch_to_frame(find_parcial(iframes, 'DlgFrame', 'id'))
+				waitUntilFound('//*[@id="ctl00_PlaceHolderMain_rbdnlMotivos"]/label[3]').click()
+				waitUntilFound('//*[@id="ctl00_PlaceHolderMain_btnEnviar"]').click()
+				time.sleep(3)
+				#print("PDF Baixado!")
+				driver.switch_to_default_content()
+				tag_a = waitUntilFound('a', 2)
+				close = find_parcial(tag_a,'DlgClose', 'id')
+				close.click()
+				time.sleep(2)
+				list_of_files = glob.glob(download_folder+'\\*')
+				latest_file = max(list_of_files, key=os.path.getctime)
+				file_name = download_folder+"\\"+td_reference_month + ".pdf"
+				print("Download do PDF efetuado com sucesso. Local: "+file_name)
+				os.rename(latest_file, file_name)
+
+		time.sleep(2) # Let the user actually see something!
+		driver.quit()
+
+		print("Finalizado! Fechando janela em 20s")
+
+		time.sleep(20)
+    exit()
+	except Exception as e:
+		print((e).encode('utf-8').strip())
+		time.sleep(10000)
